@@ -1369,6 +1369,22 @@ ul {
   height: 100%;
   border: none;
   display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.coverage-map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(0, 229, 255, 0.22) 50%, transparent 50.2%),
+    linear-gradient(0deg, transparent 49.8%, rgba(0, 229, 255, 0.16) 50%, transparent 50.2%),
+    radial-gradient(circle at 50% 50%, transparent 0 9%, rgba(0, 229, 255, 0.32) 9.3% 9.7%, transparent 10%);
+  mix-blend-mode: screen;
+  opacity: 0.62;
 }
 
 /* ============================================
@@ -2631,6 +2647,18 @@ ul {
    FUTURISTIC 3D — Additional Enhancements
    ============================================ */
 
+/* Keep the hero balanced on tablets after its desktop composition changes. */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero .container {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.9fr);
+    gap: var(--spacing-xl);
+  }
+
+  .hero-network-stage {
+    width: 100%;
+  }
+}
+
 /* Enhanced plan card borders */
 .plan-card::before {
   content: '';
@@ -2648,6 +2676,19 @@ ul {
 
 .plan-card:hover::before {
   opacity: 1;
+}
+
+.plan-card {
+  background-image:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), transparent 34%),
+    radial-gradient(circle at 50% -10%, rgba(0, 229, 255, 0.13), transparent 36%);
+}
+
+.plan-card.featured {
+  background-image:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), transparent 32%),
+    radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.26), transparent 42%),
+    linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(180, 77, 255, 0.06));
 }
 
 /* How it works step connector glow */
