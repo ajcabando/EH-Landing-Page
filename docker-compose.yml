@@ -1,0 +1,7 @@
+services:
+  landing-page:
+    build: .
+    container_name: ehconnect-landing
+    ports:
+      - "8129:80"
+    restart: unless-stopped

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apply for EH CONNECT fiber internet — fast, reliable, and affordable plans for your home or business.">
+  <meta name="theme-color" content="#0B132B">
+
+  <meta property="og:title" content="Apply Now – EH CONNECT Fiber Internet">
+  <meta property="og:description" content="Get connected with EH CONNECT. Submit your application and we'll have you online in no time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ehconnection.com/apply">
+
+  <title>Apply Now | EH CONNECT Fiber Internet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/EH/css/style.css">
+  <link rel="preload" as="style" href="/EH/css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/EH/images/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/EH/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/EH/images/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/EH/images/apple-touch-icon.png">
+  <link rel="manifest" href="/EH/images/site.webmanifest">
+</head>
+<body>
+
+  <!-- Site-wide fiber particle background (decorative, fixed behind content) -->
+  <canvas id="particleCanvas" class="particle-bg" aria-hidden="true"></canvas>
+
+  <!-- Site-wide moving fiber signal lines (decorative, fixed behind content) -->
+  <div class="signal-layer" aria-hidden="true">
+    <span class="signal-line"></span>
+    <span class="signal-line"></span>
+    <span class="signal-line"></span>
+    <span class="signal-line"></span>
+    <span class="signal-line"></span>
+    <span class="signal-dot"></span>
+    <span class="signal-dot"></span>
+    <span class="signal-dot"></span>
+    <span class="signal-dot"></span>
+    <span class="signal-dot"></span>
+  </div>
+
+  <!-- ==========================================
+       NAVBAR
+       ========================================== -->
+  <nav class="navbar scrolled" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-brand" aria-label="EH CONNECT Home">
+        <span class="logo-icon"><img src="/EH/images/logo.png" alt="EH CONNECT"></span>
+        <span class="brand-text">
+          EH CONNECT
+          <span class="brand-sub">Internet Services</span>
+        </span>
+      </a>
+      <div class="navbar-links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#plans">Internet Plans</a>
+        <a href="index.html#coverage">Coverage</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Apply Now</a>
+        <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"><i class="fas fa-user-circle"></i> Customer Portal</a>
+      </div>
+      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       APPLY PAGE
+       ========================================== -->
+  <main class="apply-page">
+    <!-- Header -->
+    <div class="apply-hero">
+      <div class="container">
+        <div class="section-badge animate-on-scroll is-visible"><i class="fas fa-rocket"></i> Get Connected Today</div>
+        <h1 class="section-title animate-on-scroll is-visible">Apply for EH CONNECT Fiber Internet</h1>
+        <p class="section-subtitle animate-on-scroll is-visible">Fill out the form below and our team will reach out within 24 hours to schedule your free installation.</p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <section class="apply-form-section">
+      <div class="container">
+        <div class="glass-card apply-form-card animate-on-scroll is-visible">
+          <!-- Application Form -->
+          <form id="applyForm" novalidate>
+            <!-- Personal Information -->
+            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:var(--spacing-md); color:var(--color-secondary-light);">
+              <i class="fas fa-user"></i> Personal Information
+            </h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" placeholder="Juan" required autocomplete="given-name">
+                <span class="error-message">Please enter your first name</span>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name <span class="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" placeholder="Dela Cruz" required autocomplete="family-name">
+                <span class="error-message">Please enter your last name</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="juan@example.com" required autocomplete="email">
+                <span class="error-message">Please enter a valid email address</span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="+63 912 345 6789" required autocomplete="tel">
+                <span class="error-message">Please enter your phone number</span>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <h3 style="font-size:1.1rem; font-weight:700; margin:var(--spacing-lg) 0 var(--spacing-md); color:var(--color-secondary-light);">
+              <i class="fas fa-home"></i> Service Address
+            </h3>
+
+            <div class="form-group">
+              <label for="street">Street / Unit / Building <span class="required">*</span></label>
+              <input type="text" id="street" name="street" placeholder="123 Fiber Street, Unit 4B" required autocomplete="street-address">
+              <span class="error-message">Please enter your street address</span>
+            </div>
+
+            <div class="form-row-3">
+              <div class="form-group">
+                <label for="barangay">Barangay <span class="required">*</span></label>
+                <input type="text" id="barangay" name="barangay" placeholder="San Antonio" required>
+                <span class="error-message">Required</span>
+              </div>
+              <div class="form-group">
+                <label for="city">City / Municipality <span class="required">*</span></label>
+                <input type="text" id="city" name="city" placeholder="Quezon City" required>
+                <span class="error-message">Required</span>
+              </div>
+              <div class="form-group">
+                <label for="province">Province</label>
+                <input type="text" id="province" name="province" placeholder="Metro Manila">
+              </div>
+            </div>
+
+            <!-- Plan Selection -->
+            <h3 style="font-size:1.1rem; font-weight:700; margin:var(--spacing-lg) 0 var(--spacing-md); color:var(--color-secondary-light);">
+              <i class="fas fa-wifi"></i> Choose Your Plan
+            </h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="plan">Internet Plan <span class="required">*</span></label>
+                <select id="plan" name="plan" required>
+                  <option value="" disabled selected>Select a plan</option>
+                  <option value="basic">Basic – 80 Mbps – ₱1,000/mo ★ Most Popular</option>
+                  <option value="bronze">Bronze – 100 Mbps – ₱1,299/mo</option>
+                  <option value="silver">Silver – 150 Mbps – ₱1,599/mo</option>
+                  <option value="gold">Gold – 200 Mbps – ₱1,899/mo</option>
+                </select>
+                <span class="error-message">Please select a plan</span>
+              </div>
+              <div class="form-group">
+                <label for="connectionType">Connection Type</label>
+                <select id="connectionType" name="connectionType">
+                  <option value="residential" selected>Residential</option>
+                  <option value="business">Business</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Additional -->
+            <h3 style="font-size:1.1rem; font-weight:700; margin:var(--spacing-lg) 0 var(--spacing-md); color:var(--color-secondary-light);">
+              <i class="fas fa-comment"></i> Additional Information
+            </h3>
+
+            <div class="form-group">
+              <label for="notes">Notes or Special Requests</label>
+              <textarea id="notes" name="notes" placeholder="Any special requirements, preferred installation date, or questions..." rows="4"></textarea>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-paper-plane"></i> Submit Application
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div class="apply-success" id="applySuccess">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Application Submitted!</h3>
+            <p>Thank you for applying to EH CONNECT! Our team will review your application and contact you within 24 hours to schedule your installation.</p>
+            <div style="display:flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+              <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+              <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-user-circle"></i> Customer Portal</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-brand" style="margin-bottom:var(--spacing-md)">
+            <span class="logo-icon"><i class="fas fa-globe"></i></span>
+            <span class="brand-text">
+              EH CONNECT
+              <span class="brand-sub">Internet Services</span>
+            </span>
+          </a>
+          <p>EH CONNECT delivers fast, reliable fiber internet to homes and businesses across the Philippines. Experience the future of connectivity with our affordable plans and responsive repair support.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#plans">Internet Plans</a></li>
+            <li><a href="index.html#coverage">Coverage</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Account</h4>
+          <p style="font-size:0.9rem; color:var(--color-gray-600); margin-bottom:var(--spacing-md);">Manage your account, pay bills, and get support through our Customer Portal.</p>
+          <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%"><i class="fas fa-user-circle"></i> Customer Portal</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 EH CONNECT Internet Services. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com/e.hinternetconnection" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       FLOATING FACEBOOK MESSENGER BUTTON
+       ========================================== -->
+  <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="fb-messenger-float" aria-label="Message us on Facebook">
+    <i class="fab fa-facebook-messenger"></i>
+  </a>
+
+  <script src="/EH/js/main.js" defer></script>
+</body>
+</html>
