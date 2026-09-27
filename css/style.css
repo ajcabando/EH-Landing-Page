@@ -527,7 +527,7 @@ h1, h2, h3, h4, h5 {
   display: none;
 }
 
-@media (min-width: 1025px) and (min-aspect-ratio: 4/3) {
+@media (min-width: 1025px) and (min-aspect-ratio: 6/5) {
   .navbar--overlay:not(.scrolled) .brand-logo--dark {
     display: none;
   }
@@ -781,7 +781,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* --- Overlay treatment --- */
-@media (min-width: 1025px) and (min-aspect-ratio: 4/3) {
+@media (min-width: 1025px) and (min-aspect-ratio: 6/5) {
   .hero {
     --hero-fg: #fff;
     --hero-sub-fg: rgba(255, 255, 255, 0.82);
@@ -847,7 +847,7 @@ h1, h2, h3, h4, h5 {
   pointer-events: none;
 }
 
-@media (min-width: 1025px) and (min-aspect-ratio: 4/3) {
+@media (min-width: 1025px) and (min-aspect-ratio: 6/5) {
   .hero-media {
     position: absolute;
     inset: 0;
