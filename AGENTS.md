@@ -7,7 +7,8 @@ Guidance for AI coding agents working in this repository.
 This is a **static marketing landing page** for **EH CONNECT**, a fiber internet service provider (ISP) serving Liloan and Consolacion, Cebu, Philippines. It is a plain HTML/CSS/JS site with **no build system, no package manager, no framework, and no backend** — the files are served as-is.
 
 - Domain referenced throughout: `https://ehconnection.com`
-- External portal link (every portal CTA points here): `https://billing.ehconnection.com/portal/login`
+- Application CTAs (Apply Now, Get Connected, Get This Plan) -> `https://billing.ehconnection.com/portal/signup`
+- Portal CTAs (Customer Portal, Go to Customer Portal, Submit a Ticket) -> `https://billing.ehconnection.com/portal/login`
 - Facebook: `https://facebook.com/e.hinternetconnection` · Messenger: `https://m.me/e.hinternetconnection`
 - Contact: `0933 195 3428` · `support@ehconnection.com` · Purok Sunflower, Poblacion, Liloan
 - Language of code, comments, and content: **English**
@@ -158,8 +159,10 @@ Only three keyframes remain: `mapPulse` (coverage map nodes), `floatBadge` (step
 - The site is fully static; there is no server-side code or data storage
 - **The application form does not send data anywhere.** It validates, logs to console, waits 1.5s, then shows `#applySuccess`. The coverage checker runs entirely client-side. Keep personal data out of network calls until a real backend is designed
 - The coverage checker reflects user input into `innerHTML` — it is escaped via `escapeHtml()`; keep it that way
-- **Every portal CTA routes to `/portal/login`.** There is no `/portal/signup` link anywhere
-  on the site, and `apply.html`'s own form makes no network request, so the site currently has
-  no working application path. That was a deliberate decision, but revisit it if signups matter
+- **Portal links are split by intent, and the split is easy to get wrong.** All 19 billing
+  links carry the same origin, so edit them by line, never by search-and-replace:
+  application CTAs go to `/portal/signup`, portal actions to `/portal/login`. Keep
+  `apply.html`'s own form in mind too — it makes no network request, so it is a mock and
+  never a real application path
 - The Font Awesome CDN link uses an SRI `integrity` hash; keep integrity hashes on any CDN resource
 - Do not commit secrets; there are none in this repo and none should be added

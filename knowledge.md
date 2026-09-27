@@ -13,7 +13,8 @@ A **static marketing landing page** for **EH CONNECT**, a fiber internet service
 
 - Domain: `https://ehconnection.com` (OG tags still point to the test server `http://10.10.80.153`)
 - Test/staging server: `10.10.80.153` — SSH user `alain`, project in `landing-page/`, deployed via Docker
-- Customer portal (all CTAs): `https://billing.ehconnection.com/portal/login`
+- Application CTAs: `https://billing.ehconnection.com/portal/signup`
+- Portal CTAs: `https://billing.ehconnection.com/portal/login`
 - Facebook: `https://facebook.com/e.hinternetconnection`
 - Messenger: `https://m.me/e.hinternetconnection`
 
@@ -105,10 +106,21 @@ Uses `'use strict'`, arrow functions, passive scroll listeners.
 
 ## Portal URLs
 
-Every portal CTA (navbar Apply Now + Customer Portal, hero Get Connected, 4 plan "Get This
-Plan", 4 compare-table CTAs, "Go to Customer Portal", footer Customer Portal and Submit a
-Ticket) points at `https://billing.ehconnection.com/portal/login`. The previous
-`/portal/signup` and the bare domain no longer appear in any link.
+The 19 billing links split by intent, and every one shares the same origin — so edit them by
+line number, never by search-and-replace, or the two sets will cross.
+
+| Destination | Count | Links |
+|---|---|---|
+| `/portal/signup` | 11 | navbar Apply Now (x2), hero Get Connected, 4 plan "Get This Plan", 4 compare-table CTAs |
+| `/portal/login` | 8 | navbar Customer Portal (x2), "Go to Customer Portal", success-block Customer Portal, 2 footer Customer Portal, 2 footer "Submit a Ticket" |
+
+"Submit a Ticket" points at login, not signup: filing a ticket is an existing-subscriber
+support action, not an application. Note that "Submit a Ticket" did not exist in the original
+design — it was added during the redesign.
+
+`apply.html` is not linked from anywhere in the site. It is reachable only by direct URL, its
+form is a client-side mock that sends no network request, and its own navbar "Apply Now" now
+points at the real signup page directly above that mock form.
 
 ## What was removed in the Sept 2026 redesign (do not reintroduce)
 
