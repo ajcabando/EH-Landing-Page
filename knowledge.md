@@ -97,10 +97,10 @@ See `AGENTS.md` for the full token table. Key points:
 - Light base (`#FFFFFF`); three dark sections only: `#coverage`, `#support`, `.footer`
 - Blue `#1668E3` clears 5.1:1 against white, so it works for both blue-on-white text and white-on-blue fills
 - Only three keyframes remain — `mapPulse`, `floatBadge`, `streak`
-- The hero has two treatments switched by `@media (min-width: 1025px) and (min-aspect-ratio: 6/5)`: a dark photo-overlay hero (2:1 source cover-cropped, `object-position: 30% 50%`) on landscape desktop, and a light stacked layout with the photo as a band on anything narrower or portrait. Both are driven by custom properties on `.hero` (`--hero-fg`, `--hero-card-bg`, `--hero-scrim`, …), not by overrides
-- The aspect-ratio condition is load-bearing: the source is 2:1, so `object-fit: cover` retains only `aspect / 2` of its width. A 900×1200 tablet at 0.75 aspect would keep 37% of the frame
-- The threshold is `6/5`, not `4/3`, because a width-only rule sends a wide-but-short window to the light layout. A 1216×970 browser window is 1.25 aspect and reads as "small" to a width check while having room for the overlay. `6/5` = 1.2 keeps that window dark with margin; `5/4` = 1.25 would clear it by 0.4% and flip back on a pixel of browser-chrome difference
-- Glassmorphism is confined to `.hero-trust` and the transparent navbar. The body sections stay flat, per the redesign note above
+- The hero is **dark at every viewport size**. `index.html` has one hero markup and `css/style.css` switches only the *layout*: at `min-width 1025px and min-aspect-ratio 6/5` the photo is `position: absolute; inset: 0` behind the copy with a three-gradient scrim and the hero is `100svh`; otherwise the photo is an `order: 2` sibling at `16 / 10` below the copy, uncropped. Text colours are single-sourced in the base `.hero` block; only `--hero-card-bg` and `--hero-scrim` differ
+- The aspect-ratio condition is load-bearing: the source is 2:1, so `object-fit: cover` retains only `aspect / 2` of its width. A 900×1200 tablet at 0.75 aspect would keep 37% of the frame. `6/5` rather than `4/3` because a width-only rule sends a wide-but-short window (1216×970 = 1.25 aspect) to the band layout, which read as a bug rather than a breakpoint
+- `.navbar-toggle span` is navy and needs a `max-width: 1024px` white override, or the hamburger is invisible against the always-dark hero. The white link colours are `min-width: 1025px` so the solid-white mobile dropdown keeps navy links
+- Glassmorphism is confined to `.hero-trust` and the transparent navbar. The body sections stay flat and light, per the redesign note above
 
 ### JavaScript (`js/main.js`)
 

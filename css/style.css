@@ -518,26 +518,30 @@ h1, h2, h3, h4, h5 {
   max-width: 220px;
 }
 
-/* The overlay navbar floats on a dark hero photo, so it needs the light
-   lockup variant (white + accent cyan); the navy one disappears against
-   it. Toggled with CSS so no JS is involved — both files load, ~10 KB.
-   Gated on the same condition as the hero overlay treatment, so a narrow
-   or portrait viewport (light page) never shows the light lockup. */
+/* The overlay navbar floats on the dark hero at every viewport size, so it
+   needs the light lockup variant (white + accent cyan); the navy one
+   disappears against it. Toggled with CSS so no JS is involved — both
+   files load, ~10 KB. Not gated on a media query: the hero is dark at
+   every size, so the transparent navbar always needs the light lockup. */
 .brand-logo--light {
   display: none;
 }
 
-@media (min-width: 1025px) and (min-aspect-ratio: 6/5) {
-  .navbar--overlay:not(.scrolled) .brand-logo--dark {
-    display: none;
-  }
+.navbar--overlay:not(.scrolled) .brand-logo--dark {
+  display: none;
+}
 
-  .navbar--overlay:not(.scrolled) .brand-logo--light {
-    display: inline-block;
-  }
+.navbar--overlay:not(.scrolled) .brand-logo--light {
+  display: inline-block;
+}
 
-  /* Light type while the overlay navbar is transparent. The min-width
-     floor also keeps the mobile dropdown panel (solid white) navy. */
+.navbar--overlay:not(.scrolled) .brand-sub {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Wide: the links are horizontal and sit on the dark photo. The min-width
+   floor also keeps the mobile dropdown panel (solid white) navy. */
+@media (min-width: 1025px) {
   .navbar--overlay:not(.scrolled) .navbar-links a {
     color: #fff;
   }
@@ -555,10 +559,6 @@ h1, h2, h3, h4, h5 {
     background: var(--color-accent-cyan);
   }
 
-  .navbar--overlay:not(.scrolled) .brand-sub {
-    color: rgba(255, 255, 255, 0.78);
-  }
-
   .navbar--overlay:not(.scrolled) .navbar-actions .btn-outline {
     color: #fff;
     border-color: rgba(255, 255, 255, 0.45);
@@ -568,6 +568,18 @@ h1, h2, h3, h4, h5 {
     color: #fff;
     background: rgba(255, 255, 255, 0.14);
     border-color: #fff;
+  }
+}
+
+/* Narrow: the links live inside the solid-white dropdown panel and must
+   stay navy, but the hamburger and brand sit on the dark hero. */
+@media (max-width: 1024px) {
+  .navbar--overlay:not(.scrolled) .navbar-toggle span {
+    background: #fff;
+  }
+
+  .navbar--overlay:not(.scrolled) .navbar-toggle:hover span {
+    background: var(--color-accent-cyan);
   }
 }
 
@@ -743,56 +755,56 @@ h1, h2, h3, h4, h5 {
 /* ============================================
    HERO
 
-   Two treatments driven by one block of custom
-   properties, so the switch is a variable swap
-   rather than a pile of overrides:
+   Dark everywhere. The overlay vs band split is
+   LAYOUT only — the text colours are single-
+   sourced here, so the two treatments cannot
+   drift apart the way the previous light/dark
+   pair did:
 
-   - overlay  (min-width 900px AND >= 4:3 aspect)
-     Full-viewport dark hero, photo behind a
-     scrim, copy overlaid. The 2:1 source is
-     cover-cropped, and the visible width is
-     aspect/2, so a portrait viewport would
-     crop away most of the frame. Hence the
+   - overlay  (min-width 1025px AND >= 6:5
+     aspect)  Full-viewport hero, photo behind a
+     scrim, copy on top. The 2:1 source is
+     cover-cropped and keeps only aspect/2 of its
+     width, so a portrait viewport would crop
+     away most of the frame. Hence the
      aspect-ratio condition, not a width one.
-   - stacked  (everything else)
-     Light page, photo as a band under the copy.
+   - band  (everything else)  Same dark page and
+     glass card, but the photo sits below the
+     copy as a full uncropped band.
+
+   Only two properties differ between them, both
+   for a real reason: the card fill, and the
+   scrim. Everything else is shared.
    ============================================ */
 .hero {
-  --hero-fg: var(--color-navy);
-  --hero-sub-fg: var(--color-body);
-  --hero-accent: var(--color-primary);
-  --hero-eyebrow-fg: var(--color-primary-hover);
-  --hero-eyebrow-bg: var(--color-primary-soft);
-  --hero-card-bg: #fff;
-  --hero-card-border: var(--color-border);
-  --hero-card-fg: var(--color-navy);
-  --hero-card-rule: var(--color-border);
-  --hero-card-blur: none;
-  --hero-scrim: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0));
+  --hero-fg: #fff;
+  --hero-sub-fg: rgba(255, 255, 255, 0.82);
+  --hero-accent: var(--color-accent-cyan);
+  --hero-eyebrow-fg: rgba(255, 255, 255, 0.92);
+  --hero-eyebrow-bg: rgba(255, 255, 255, 0.14);
+  --hero-card-bg: rgba(255, 255, 255, 0.07);
+  --hero-card-border: rgba(255, 255, 255, 0.18);
+  --hero-card-fg: #fff;
+  --hero-card-rule: rgba(255, 255, 255, 0.16);
+  --hero-card-blur: blur(16px);
+  /* Band layout: a short fade blends the photo's top edge into the navy.
+     The trust card sits above the photo here, so it needs no scrim. */
+  --hero-scrim: linear-gradient(to bottom, var(--color-navy) 0%, rgba(10, 26, 51, 0) 10%);
   --hero-media-position: 45% 50%;
-  --hero-media-position-sm: 30% 50%;
 
   position: relative;
   display: flex;
   flex-direction: column;
   padding-top: calc(var(--navbar-height) + 3.5rem);
-  background: var(--color-bg);
+  background: var(--color-navy);
   overflow: hidden;
 }
 
-/* --- Overlay treatment --- */
+/* --- Overlay treatment: layout only --- */
 @media (min-width: 1025px) and (min-aspect-ratio: 6/5) {
   .hero {
-    --hero-fg: #fff;
-    --hero-sub-fg: rgba(255, 255, 255, 0.82);
-    --hero-accent: var(--color-accent-cyan);
-    --hero-eyebrow-fg: rgba(255, 255, 255, 0.92);
-    --hero-eyebrow-bg: rgba(255, 255, 255, 0.14);
+    /* Dark glass over the photo, instead of a light wash on solid navy */
     --hero-card-bg: rgba(10, 26, 51, 0.55);
-    --hero-card-border: rgba(255, 255, 255, 0.18);
-    --hero-card-fg: #fff;
-    --hero-card-rule: rgba(255, 255, 255, 0.16);
-    --hero-card-blur: blur(16px);
     --hero-scrim:
       linear-gradient(to bottom, rgba(10, 26, 51, 0.62) 0%, rgba(10, 26, 51, 0) 26%),
       linear-gradient(to top, rgba(10, 26, 51, 0.88) 0%, rgba(10, 26, 51, 0) 42%),
@@ -801,27 +813,12 @@ h1, h2, h3, h4, h5 {
 
     min-height: 100svh;
     padding-bottom: clamp(2rem, 5vh, 3.5rem);
-    background: var(--color-navy);
   }
 
   /* Fill the viewport so .hero-content's auto margins can centre the copy
      and push the trust card onto the bottom edge. */
   .hero-inner {
     flex: 1;
-  }
-
-  .hero .hero-actions .btn-outline-light,
-  .hero .hero-actions .btn-outline-light:hover {
-    color: #fff;
-  }
-
-  .hero .hero-actions .btn-outline-light {
-    border-color: rgba(255, 255, 255, 0.45);
-  }
-
-  .hero .hero-actions .btn-outline-light:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: #fff;
   }
 }
 
@@ -911,21 +908,6 @@ h1, h2, h3, h4, h5 {
   flex-wrap: wrap;
   gap: 0.85rem;
   margin-bottom: 0;
-}
-
-/* The markup carries .btn-outline-light for the overlay treatment. In the
-   stacked treatment the page is light, so that variant's white text and
-   translucent border would render invisible — swap it for the navy one.
-   The overlay media query below turns it white again. */
-.hero-actions .btn-outline-light {
-  color: var(--color-navy);
-  border-color: var(--color-border-strong);
-}
-
-.hero-actions .btn-outline-light:hover {
-  color: var(--color-navy);
-  background: var(--color-bg-soft);
-  border-color: var(--color-navy);
 }
 
 /* Trust card — glass over the photo in the overlay treatment,
