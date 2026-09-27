@@ -2,3 +2,6 @@
 Dockerfile
 docker-compose.yml
 .git
+
+# Design-review screenshots — in the repo, never served by nginx
+screenshots/

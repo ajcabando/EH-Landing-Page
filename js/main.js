@@ -7,53 +7,47 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
-  // 1. NAVBAR – Scroll Effect & Background
+  // 1. NAVBAR – Scroll Effect
   // ==========================================
-  const navbar = document.querySelector('.navbar');
+  const navbar = document.getElementById('navbar');
 
   const updateNavbar = () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    if (!navbar) return;
+    navbar.classList.toggle('scrolled', window.scrollY > 24);
   };
 
   window.addEventListener('scroll', updateNavbar, { passive: true });
-  updateNavbar(); // initial check
+  updateNavbar();
 
   // ==========================================
   // 2. MOBILE MENU TOGGLE
   // ==========================================
-  const toggleBtn = document.querySelector('.navbar-toggle');
-  const navLinks = document.querySelector('.navbar-links');
-  const navActions = document.querySelector('.navbar-actions');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  const navActions = document.getElementById('navActions');
 
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-      toggleBtn.classList.toggle('active');
-      navLinks.classList.toggle('is-open');
-      if (navActions) navActions.classList.toggle('is-open');
-      document.body.style.overflow = navLinks.classList.contains('is-open') ? 'hidden' : '';
+  const setMenu = (open) => {
+    if (!navToggle || !navLinks) return;
+    navToggle.classList.toggle('active', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navLinks.classList.toggle('is-open', open);
+    if (navActions) navActions.classList.toggle('is-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      setMenu(!navLinks.classList.contains('is-open'));
     });
 
-    // Close menu on link click
-    document.querySelectorAll('.navbar-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        toggleBtn.classList.remove('active');
-        navLinks.classList.remove('is-open');
-        if (navActions) navActions.classList.remove('is-open');
-        document.body.style.overflow = '';
-      });
+    navLinks.addEventListener('click', (e) => {
+      if (e.target.closest('a')) setMenu(false);
     });
 
-    // Close menu on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
-        toggleBtn.classList.remove('active');
-        navLinks.classList.remove('is-open');
-        if (navActions) navActions.classList.remove('is-open');
-        document.body.style.overflow = '';
+        setMenu(false);
+        navToggle.focus();
       }
     });
   }
@@ -61,26 +55,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 3. SCROLL SPY – Active Section Highlighting
   // ==========================================
-  const sections = document.querySelectorAll('section[id]');
   const navLinksList = document.querySelectorAll('.navbar-links a[href^="#"]');
 
   const updateActiveSection = () => {
+    const scrollPos = window.scrollY + 140;
     let current = '';
-    const scrollPos = window.scrollY + 120; // offset for navbar
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
-      }
+    document.querySelectorAll('section[id]').forEach((section) => {
+      const top = section.offsetTop;
+      if (scrollPos >= top) current = section.id;
     });
 
-    navLinksList.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
+    navLinksList.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${current}`;
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'true');
+      } else {
+        link.removeAttribute('aria-current');
       }
     });
   };
@@ -91,360 +83,259 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 4. SCROLL ANIMATIONS (Intersection Observer)
   // ==========================================
-  const animateElements = document.querySelectorAll('.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .stagger-children');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const revealTargets = document.querySelectorAll(
+    '.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .stagger-children'
+  );
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -80px 0px',
-    threshold: 0.1
-  };
+  if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+    revealTargets.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.08 });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // only animate once
-      }
-    });
-  }, observerOptions);
-
-  animateElements.forEach(el => observer.observe(el));
+    revealTargets.forEach((el) => observer.observe(el));
+  }
 
   // ==========================================
-  // 5. SMOOTH SCROLL (for anchor links)
+  // 5. SMOOTH SCROLL (anchor links)
   // ==========================================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const href = anchor.getAttribute('href');
-      if (href === '#') return;
+      if (!href || href === '#') return;
 
       const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
+      if (!target) return;
+
+      e.preventDefault();
+      const offset = (navbar ? navbar.offsetHeight : 0) + 16;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top,
+        behavior: reduceMotion.matches ? 'auto' : 'smooth'
+      });
+
+      // Move focus to the section for keyboard/screen-reader users
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
     });
   });
 
   // ==========================================
-  // 6. 3D PERSPECTIVE TILT EFFECT FOR CARDS
+  // 6. PLANS – Monthly / Compare segmented toggle
   // ==========================================
-  if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const tiltCards = document.querySelectorAll('.glass-card, .plan-card, .audience-card');
+  const plansToggle = document.querySelector('.plans-toggle');
+  const planPanels = {
+    'tab-cards': document.getElementById('panel-cards'),
+    'tab-compare': document.getElementById('panel-compare')
+  };
 
-    tiltCards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+  if (plansToggle) {
+    const tabs = Array.from(plansToggle.querySelectorAll('[role="tab"]'));
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (y - centerY) / centerY * -10;
-        const rotateY = (x - centerX) / centerX * 10;
-
-        // Calculate light position for dynamic glow
-        const lightX = (x / rect.width) * 100;
-        const lightY = (y / rect.height) * 100;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(15px) scale(1.02)`;
-        card.style.boxShadow = `
-          ${-rotateY * 2}px ${rotateX * 2}px 40px rgba(0, 0, 0, 0.3),
-          0 0 30px rgba(0, 229, 255, ${0.05 + Math.abs(rotateX) * 0.01})
-        `;
-
-        // Dynamic light reflection via CSS custom property
-        card.style.setProperty('--light-x', `${lightX}%`);
-        card.style.setProperty('--light-y', `${lightY}%`);
+    const selectTab = (tab, focus = true) => {
+      tabs.forEach((t) => {
+        const isSelected = t === tab;
+        t.setAttribute('aria-selected', String(isSelected));
+        t.setAttribute('tabindex', isSelected ? '0' : '-1');
+        const panel = planPanels[t.id];
+        if (panel) panel.hidden = !isSelected;
       });
+      if (focus) tab.focus();
+    };
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-        card.style.boxShadow = '';
-        card.style.removeProperty('--light-x');
-        card.style.removeProperty('--light-y');
-      });
-    });
-  }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectTab(tab, false));
 
-  // ==========================================
-  // 7. PERFORMANCE: Lazy load coverage map iframe
-  // ==========================================
-  const coverageMapFrame = document.querySelector('.coverage-map iframe[data-src]');
-  if (coverageMapFrame) {
-    const mapObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          coverageMapFrame.src = coverageMapFrame.dataset.src;
-          coverageMapFrame.removeAttribute('data-src');
-          mapObserver.unobserve(entry.target);
+      tab.addEventListener('keydown', (e) => {
+        let nextIndex = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIndex = (i + 1) % tabs.length;
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nextIndex = (i - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home') nextIndex = 0;
+        if (e.key === 'End') nextIndex = tabs.length - 1;
+
+        if (nextIndex !== null) {
+          e.preventDefault();
+          selectTab(tabs[nextIndex]);
         }
       });
-    }, { rootMargin: '200px' });
-    mapObserver.observe(coverageMapFrame);
-  }
-
-  // ==========================================
-  // 8. REDUCED MOTION PREFERENCE CHECK
-  // ==========================================
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (prefersReducedMotion.matches) {
-    // Disable all animations
-    document.querySelectorAll('.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .stagger-children').forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-      el.classList.add('is-visible');
     });
   }
 
   // ==========================================
-  // 9. FORM VALIDATION
+  // 7. COVERAGE – Address availability check
   // ==========================================
+  const coverageForm = document.getElementById('coverageForm');
+  const addressInput = document.getElementById('addressInput');
+  const coverageResult = document.getElementById('coverageResult');
 
-  // Helper: validate a single field
+  // Barangays currently served. Local only — nothing is sent anywhere.
+  const SERVICE_AREAS = [
+    'Sta. Cruz', 'San Vicente', 'Sambag', 'Poblacion', 'Catarman',
+    'Tayud', 'Yati', 'Cogon', 'Bahak',
+    'Poblacion Oriental', 'Bamboo Hills', 'Tugbongab', 'Nangka', 'Eversley'
+  ];
+
+  const MESSENGER_URL = 'https://m.me/e.hinternetconnection';
+
+  if (coverageForm && addressInput && coverageResult) {
+    const normalize = (str) => str
+      .toLowerCase()
+      .replace(/[.,]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    // Reflected user input is escaped before it goes into innerHTML
+    const escapeHtml = (str) => str.replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+
+    const findArea = (query) => {
+      const q = normalize(query);
+      if (!q) return null;
+      return SERVICE_AREAS.find((area) => {
+        const a = normalize(area);
+        return a.includes(q) || q.includes(a);
+      }) || null;
+    };
+
+    coverageForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const value = addressInput.value.trim();
+      coverageResult.classList.remove('is-covered', 'is-pending');
+
+      if (!value) {
+        coverageResult.innerHTML =
+          '<i class="fas fa-circle-exclamation" aria-hidden="true"></i>' +
+          '<span>Please enter your barangay or address so we can check it.</span>';
+        addressInput.focus();
+        coverageResult.hidden = false;
+        return;
+      }
+
+      const match = findArea(value);
+
+      if (match) {
+        coverageResult.innerHTML =
+          '<i class="fas fa-circle-check" aria-hidden="true"></i>' +
+          `<span>Good news &mdash; <strong>${escapeHtml(match)}</strong> is within our fiber service area. ` +
+          '<a href="' + MESSENGER_URL + '" target="_blank" rel="noopener noreferrer">Message us</a> ' +
+          'to schedule your installation.</span>';
+        coverageResult.classList.add('is-covered');
+      } else {
+        coverageResult.innerHTML =
+          '<i class="fas fa-circle-info" aria-hidden="true"></i>' +
+          `<span>We don&rsquo;t cover <strong>${escapeHtml(value)}</strong> yet, but we are expanding. ` +
+          '<a href="' + MESSENGER_URL + '" target="_blank" rel="noopener noreferrer">Message us</a> ' +
+          'and we&rsquo;ll confirm the nearest point we can serve.</span>';
+        coverageResult.classList.add('is-pending');
+      }
+
+      coverageResult.hidden = false;
+    });
+
+    addressInput.addEventListener('input', () => {
+      if (!coverageResult.hidden) coverageResult.hidden = true;
+    });
+  }
+
+  // ==========================================
+  // 8. FORM VALIDATION (apply page)
+  // ==========================================
   const validateField = (field) => {
     const formGroup = field.closest('.form-group');
     if (!formGroup) return true;
 
-    let valid = true;
+    const errorEl = formGroup.querySelector('.form-error');
     const value = field.value.trim();
+    let valid = true;
+    let message = '';
 
     if (field.hasAttribute('required') && !value) {
       valid = false;
+      message = errorEl ? errorEl.dataset.required || 'This field is required.' : '';
     } else if (field.type === 'email' && value) {
-      // Basic email regex
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) valid = false;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        valid = false;
+        message = errorEl ? errorEl.dataset.email || 'Enter a valid email address.' : '';
+      }
+    } else if (field.type === 'tel' && value) {
+      if (!/^[+\d][\d\s()-]{6,}$/.test(value)) {
+        valid = false;
+        message = errorEl ? errorEl.dataset.tel || 'Enter a valid phone number.' : '';
+      }
     }
+
+    if (errorEl && message) errorEl.textContent = message;
 
     formGroup.classList.toggle('has-error', !valid);
     formGroup.classList.toggle('has-success', valid && value.length > 0);
     return valid;
   };
 
-  // Helper: validate all fields in a form
-  const validateForm = (form) => {
-    const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
-    let allValid = true;
-    fields.forEach(field => {
-      if (!validateField(field)) allValid = false;
+  document.querySelectorAll('.form-group input, .form-group select, .form-group textarea')
+    .forEach((field) => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => {
+        const formGroup = field.closest('.form-group');
+        if (formGroup && formGroup.classList.contains('has-error')) validateField(field);
+      });
     });
-    return allValid;
-  };
 
-  // Real-time validation on blur
-  document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
-    field.addEventListener('blur', () => validateField(field));
-    field.addEventListener('input', () => {
-      const formGroup = field.closest('.form-group');
-      if (formGroup && formGroup.classList.contains('has-error')) {
-        validateField(field);
-      }
-    });
-  });
-
-  // --- Apply Form ---
+  // ==========================================
+  // 9. APPLY FORM – client-side only (no network)
+  // ==========================================
   const applyForm = document.getElementById('applyForm');
   if (applyForm) {
     applyForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      if (!validateForm(applyForm)) {
-        // Focus first error field
-        const firstError = applyForm.querySelector('.has-error input, .has-error select, .has-error textarea');
+      const fields = applyForm.querySelectorAll('input[required], select[required], textarea[required]');
+      let allValid = true;
+      let firstError = null;
+
+      fields.forEach((field) => {
+        if (!validateField(field)) {
+          allValid = false;
+          if (!firstError) firstError = field;
+        }
+      });
+
+      if (!allValid) {
         if (firstError) firstError.focus();
         return;
       }
 
-      // Simulate submission
       const submitBtn = applyForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      const originalHtml = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Submitting&hellip;';
       submitBtn.disabled = true;
 
-      // Collect form data (for future billing system integration)
-      const formData = new FormData(applyForm);
-      const data = Object.fromEntries(formData.entries());
-
+      // Collected for a future billing-system integration. Never sent anywhere.
+      const data = Object.fromEntries(new FormData(applyForm).entries());
       console.log('📝 Application submitted:', data);
 
-      // Simulate API call
       setTimeout(() => {
         applyForm.style.display = 'none';
-        document.getElementById('applySuccess').classList.add('is-visible');
-        submitBtn.innerHTML = originalText;
+        const success = document.getElementById('applySuccess');
+        if (success) {
+          success.classList.add('is-visible');
+          success.setAttribute('tabindex', '-1');
+          success.focus();
+        }
+        submitBtn.innerHTML = originalHtml;
         submitBtn.disabled = false;
       }, 1500);
     });
-  }
-
-  // ==========================================
-  // 10. HERO CAROUSEL 3D TILT EFFECT
-  // ==========================================
-  const heroVisual = document.querySelector('.hero-visual');
-  const heroCarousel = document.querySelector('.hero-carousel');
-  const heroGlow = document.querySelector('.hero-photo-glow');
-
-  if (heroVisual && heroCarousel && window.innerWidth > 768 && !prefersReducedMotion.matches) {
-    heroVisual.addEventListener('mousemove', (e) => {
-      const rect = heroVisual.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-
-      heroCarousel.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px) scale(1.02)`;
-      heroCarousel.style.boxShadow = `${-rotateY * 3}px ${rotateX * 3}px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 229, 255, 0.12)`;
-
-      if (heroGlow) {
-        heroGlow.style.background = `radial-gradient(ellipse 60% 60% at ${50 + rotateY * 2}% ${50 + rotateX * 2}%, rgba(0, 229, 255, 0.3) 0%, rgba(180, 77, 255, 0.15) 40%, transparent 70%)`;
-      }
-    });
-
-    heroVisual.addEventListener('mouseleave', () => {
-      heroCarousel.style.transform = '';
-      heroCarousel.style.boxShadow = '';
-      if (heroGlow) heroGlow.style.background = '';
-    });
-  }
-
-  // ==========================================
-  // 11. HERO IMAGE CAROUSEL
-  // ==========================================
-  const carousel = document.querySelector('.hero-carousel');
-  if (carousel) {
-    const slides = carousel.querySelectorAll('.hero-carousel-slide');
-    const dots = carousel.querySelectorAll('.hero-carousel-dot');
-    let currentSlide = 0;
-    let carouselTimer = null;
-
-    const showSlide = (index) => {
-      currentSlide = (index + slides.length) % slides.length;
-      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === currentSlide));
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === currentSlide);
-        dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
-      });
-    };
-
-    const startCarousel = () => {
-      // No auto-rotation for reduced-motion users
-      if (prefersReducedMotion.matches || slides.length < 2) return;
-      carouselTimer = setInterval(() => showSlide(currentSlide + 1), 3000);
-    };
-
-    const stopCarousel = () => {
-      if (carouselTimer) clearInterval(carouselTimer);
-      carouselTimer = null;
-    };
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        stopCarousel();
-        showSlide(i);
-        startCarousel();
-      });
-    });
-
-    // Pause on hover (desktop)
-    carousel.addEventListener('mouseenter', stopCarousel);
-    carousel.addEventListener('mouseleave', startCarousel);
-
-    startCarousel();
-  }
-
-  // ==========================================
-  // 12. PARTICLE CANVAS — Subtle Site-Wide Fiber Data Stream
-  // ==========================================
-  const particleCanvas = document.getElementById('particleCanvas');
-  if (particleCanvas && !prefersReducedMotion.matches) {
-    const ctx = particleCanvas.getContext('2d');
-    let particles = [];
-    const PARTICLE_COUNT = window.innerWidth < 768 ? 25 : 50;
-    const CONNECTION_DISTANCE = 120;
-
-    let resizeTimer;
-    const resizeCanvas = () => {
-      particleCanvas.width = window.innerWidth;
-      particleCanvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resizeCanvas, 200);
-    });
-
-    class FiberParticle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * particleCanvas.width;
-        this.y = Math.random() * particleCanvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 1.8 + 0.4;
-        this.opacity = Math.random() * 0.3 + 0.08;
-        const colors = ['0, 229, 255', '180, 77, 255', '0, 255, 136'];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > particleCanvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > particleCanvas.height) this.vy *= -1;
-      }
-      draw() {
-        ctx.save();
-        ctx.shadowColor = `rgba(${this.color}, 0.5)`;
-        ctx.shadowBlur = 6;
-        ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new FiberParticle());
-    }
-
-    const drawConnections = () => {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DISTANCE) {
-            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.07;
-            ctx.strokeStyle = `rgba(0, 229, 255, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
-
-    const animateParticles = () => {
-      ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      drawConnections();
-      requestAnimationFrame(animateParticles);
-    };
-    animateParticles();
   }
 
   console.log('🚀 EH CONNECT ISP – Landing Page initialized');

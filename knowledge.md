@@ -1,13 +1,19 @@
 # Project Knowledge
 
-This file gives Freebuff context about the EH CONNECT ISP landing page project: goals, commands, conventions, and gotchas.
+Reference notes for the EH CONNECT ISP landing page project: goals, commands, conventions, and gotchas.
+
+> **Note (Sept 2026 redesign):** the site was rebuilt from a dark neon-glassmorphism
+> theme into a light professional theme. `AGENTS.md` is the authoritative source for the
+> current design system, structure, and code conventions. This file keeps the project-level
+> facts and the history of what was removed, so the old patterns don't get reintroduced.
 
 ## What this is
 
 A **static marketing landing page** for **EH CONNECT**, a fiber internet service provider serving Liloan and Consolacion, Cebu, Philippines. It's a plain HTML/CSS/JS site with **no build system, no package manager, no framework, and no backend**.
 
-- Domain: `https://ehconnection.com`
-- Billing/customer portal: `https://billing.ehconnection.com`
+- Domain: `https://ehconnection.com` (OG tags still point to the test server `http://10.10.80.153`)
+- Test/staging server: `10.10.80.153` — SSH user `alain`, project in `landing-page/`, deployed via Docker
+- Customer portal (all CTAs): `https://billing.ehconnection.com/portal/login`
 - Facebook: `https://facebook.com/e.hinternetconnection`
 - Messenger: `https://m.me/e.hinternetconnection`
 
@@ -15,14 +21,39 @@ A **static marketing landing page** for **EH CONNECT**, a fiber internet service
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Main one-page landing page (~600 lines, 10+ sections) |
-| `apply.html` | "Apply Now" page with application form (~250 lines) |
-| `css/style.css` | All styles, futuristic 3D theme, glassmorphism, responsive (~2500 lines) |
-| `js/main.js` | All client-side JS, organized in numbered sections (~400 lines) |
-| `images/` | Logo, favicons, PWA manifest, stock photos (carousel: router-wifi.jpg, fiber-optic.jpg, family-laptop.jpg, streaming-setup.jpg, secure-home-network.jpg, home-internet-speed.png) |
-| `Dockerfile` | nginx:1.27-alpine container that serves under `/EH/` path prefix |
+| `index.html` | Main one-page landing page (7 sections + footer) |
+| `apply.html` | "Apply Now" page with the application form |
+| `css/style.css` | All styles for both pages — light design system, responsive (~2800 lines) |
+| `js/main.js` | All client-side JS in 9 numbered sections (~300 lines) |
+| `images/` | Logo, favicons, PWA manifest, stock photos (see image table below) |
+| `Dockerfile` | nginx:1.27-alpine; copies site to `/usr/share/nginx/html` (root), `chmod -R a+rX` |
 | `docker-compose.yml` | Runs on port 8129 |
-| `nginx.conf` | Redirects `/` → `/EH/index.html`, serves `/EH/` alias |
+| `nginx.conf` | Serves at root `/`, `try_files $uri $uri/ =404`; 301-redirects legacy `/EH` → `/` |
+
+### Images
+
+| File | Used for |
+|------|----------|
+| `hero-home-dusk.{jpg,webp}` | Hero right panel (preloaded, `fetchpriority="high"`) |
+| `coverage-texture.{jpg,webp}` | `#coverage` dark backdrop at 30% + luminosity blend |
+| `technician.jpg` | `#about` (Get Connected) |
+| `fiber-optic.{jpg,webp}` | `#support` dark backdrop at 20% |
+| `logo-brand.{png,webp}` | Navbar brand lockup — navy + primary blue, transparent bg, 300×60 |
+| `logo-brand-light.{png,webp}` | Footer brand lockup — white + accent-cyan, transparent bg |
+| `logo.png` | **favicon / manifest / OG only** — a full dark square badge, unreadable at navbar size |
+
+The brand lockup is a 300×60 horizontal PNG whose white paper was knocked out to transparency
+and whose colors were remapped to the page palette (red → `#1668E3`, black → `#0A1A33`, the
+blue mark keeps a gradient). Two variants exist because the navy one is invisible on the dark
+footer. It renders at 190×38, comfortably under the native 300px width, so it never upscales.
+
+**Known inconsistency:** the logo reads "E.H INTERNET CONNECTION" while ~22 strings across both
+pages still read "EH CONNECT" (titles, meta, footer copyright, apply page copy, alt text).
+Intentional — the logo was swapped without a rename.
+
+**Unused after the redesign** (left on disk, not deleted): `fiber-patch.jpg`, `home-internet-speed.png`, `secure-home-network.png`, `family-laptop.jpg`, `home-streaming.jpg`, `router-wifi.jpg`, `business-team.jpg`, `server-room.jpg`, `cta-bg.jpg`. Most were only used by the deleted hero carousel.
+
+`cwebp` is installed and used to produce WebP twins; `sips` on this machine does **not** support WebP.
 
 ## Commands
 
@@ -37,135 +68,93 @@ npx serve .
 docker compose up -d --build    # serves on http://localhost:8129
 docker compose down             # stop
 
-# Testing: manual only — open pages in browser, check navigation,
-# mobile menu, form validation, carousel. No automated tests or linters.
+# Testing: manual — open pages in a browser, check navigation, mobile menu,
+# plans toggle, coverage checker, form validation.
+# Playwright IS available for scripted checks:
+#   npx playwright --version    # 1.63.0
 ```
 
 ## Architecture & conventions
 
-### Path prefix — IMPORTANT GOTCHA
+### Asset paths — root-relative (no path prefix)
 
-All asset paths in HTML are **absolute and prefixed with `/EH/`** (e.g. `/EH/css/style.css`, `/EH/images/logo.png`). The site is deployed under an `/EH/` subdirectory. When serving locally with `python3 -m http.server`, place files under an `EH/` subdirectory, or asset links will 404. Always use the `/EH/` prefix when adding new asset references.
+All asset paths are **root-relative** (`/css/style.css`, `/images/logo.png`, `/js/main.js`). The site is served at the **root path** by nginx. Legacy `/EH/...` URLs are 301-redirected to `/...`. Always use root-relative paths for new asset references.
 
 ### HTML structure
 
-- Sections in `index.html` each have an `id` matching navbar anchors (scroll spy picks them up)
-- Sections: `#home` (hero), `#about`, `#how-it-works`, `#plans`, `#coverage`, `#portal`, `#testimonials`, CTA banner, `#faq`, `#contact`
-- 2-space indent, banner comments (`<!-- ===...=== -->`), ARIA attributes on nav/sections
+- Sections in `index.html` each have an `id`; navbar anchors must match one for the scroll spy
+- Order: `#home`, `#plans`, `#coverage`, `#portal`, `#about`, `#testimonials`, `#faq`, `#support`, footer
+- Navbar order is Home / Plans / Coverage / Support / About / FAQ — **deliberately different** from page order
+- 2-space indent, banner comments, ARIA on nav/sections and all icon-only controls
 - External links: `target="_blank" rel="noopener noreferrer"`
 
-### CSS — Futuristic 3D Design System
+### CSS — light design system
 
-#### Color Palette (CSS Custom Properties)
+See `AGENTS.md` for the full token table. Key points:
 
-| Variable | Value | Usage |
-|----------|-------|-------|
-| `--color-neon-cyan` | `#00e5ff` | Primary accent, glows, borders, badges |
-| `--color-neon-purple` | `#b44dff` | Secondary accent, gradients, network dots |
-| `--color-neon-pink` | `#ff2d78` | Tertiary accent, floating shapes |
-| `--color-neon-green` | `#00ff88` | Success states, checkmarks |
-| `--color-dark` | `#030712` | Background |
-| `--color-primary` | `#050a18` | Deep background |
-| `--color-secondary` | `#00e5ff` | Main interactive color |
-
-#### Glassmorphism Cards (`.glass-card`)
-
-- Deep glass background: `rgba(8, 14, 40, 0.55)` with `blur(24px)`
-- `::before` pseudo-element: Top refraction highlight (cyan→purple gradient, 1px)
-- `::after` pseudo-element: Holographic shimmer + dynamic light reflection via CSS custom properties (`--light-x`, `--light-y`)
-- `transform-style: preserve-3d` for 3D tilt effects
-- Hover: `translateY(-8px) translateZ(20px)` with neon glow shadow
-
-#### 3D Effects
-
-- Hero section: `perspective: 1200px` on `.hero-visual`
-- Carousel: Interactive 3D tilt via JS mousemove (rotateX/rotateY up to ±8deg, translateZ(20px), scale(1.02))
-- Cards: Interactive tilt via JS mousemove (rotateX/rotateY up to ±10deg, translateZ(15px))
-- Dynamic light reflection on glass cards via `--light-x`/`--light-y` CSS custom properties
-
-#### Animations
-
-| Animation | Description |
-|-----------|-------------|
-| `holoShimmer` | Holographic shimmer sweep on glass cards |
-| `gradientShift` | Rotating gradient on titles and buttons |
-| `floatSlow` | Slow vertical float (unused helper) |
-| `glowPulse` | Icon and badge glow animation |
-| `borderGlow` | Border opacity pulse animation |
-| `signalPulseH/V` | Horizontal/vertical signal sweep gradients (site-wide `.signal-layer`) |
-| `signalTravel` | Fiber-light lines traveling across the screen (site-wide `.signal-layer`) |
-| `dotPulse` | Glowing signal dots pulsing (site-wide `.signal-layer`) |
-
-#### Hero Background
-
-The hero uses the **same plain dark background as the rest of the page** (`body` → `--color-dark`). The old hero-only animated layers (mesh gradient, grid, network, floating shapes, scanlines) were removed for visual consistency across sections.
-
-Two **subtle site-wide decorative layers** (both fixed at `z-index: -1` behind all content) run on **both pages**:
-
-- `#particleCanvas.particle-bg` — faint fiber-optic particle canvas (25–50 particles, cyan/purple/green, low-opacity connection lines, JS-driven)
-- `.signal-layer` — moving fiber-light signal lines: 5 traveling horizontal light lines (`signalTravel`) + 5 pulsing glow dots (`dotPulse`), plus horizontal/vertical sweep gradients (`signalPulseH/V`) via `::before`/`::after`; pure CSS, reduced-motion aware
-
-#### Buttons
-
-- `.btn-primary`: Animated gradient (cyan→blue→purple), glow shadow, 3D hover lift
-- `.btn-secondary`: Glass background, cyan border glow on hover
-- `.btn-outline`: Cyan border, subtle fill on hover
-- All buttons: `::before` shimmer sweep, `::after` gradient border mask on hover
-
-#### Section Badges
-
-- Neon cyan border and glow, text-shadow, `glowPulse` animation on icon
-
-#### Section Titles
-
-- Animated gradient text (white→cyan→purple) with `gradientShift` animation
-- `drop-shadow` filter for subtle glow
+- Light base (`#FFFFFF`); three dark sections only: `#coverage`, `#support`, `.footer`
+- Blue `#1668E3` clears 5.1:1 against white, so it works for both blue-on-white text and white-on-blue fills
+- Only three keyframes remain — `mapPulse`, `floatBadge`, `streak`
+- The hero photo bleeds off the right viewport edge at ≥1025px via a negative `margin-right` computed from `--max-width`
 
 ### JavaScript (`js/main.js`)
 
-Everything runs inside one `DOMContentLoaded` listener. Organized into **numbered, banner-commented sections**:
-
-1. Navbar scroll effect
-2. Mobile menu toggle
-3. Scroll spy (highlights active nav link)
-4. IntersectionObserver scroll animations (adds `.is-visible`)
-5. Smooth scroll
-6. **3D perspective tilt on glass cards** (rotateX/rotateY via mousemove, dynamic light via CSS custom properties)
-7. Lazy-load coverage map iframe (`data-src` → `src`)
-8. Reduced-motion check
-9. Form validation (apply page)
-10. **Hero carousel 3D tilt** (rotateX/rotateY/translateZ/scale, dynamic glow shift)
-11. Hero image carousel (auto-rotate, dots, hover pause)
-12. **Particle canvas system** — site-wide fixed backdrop, 25–50 particles with connections, subtle low-opacity (cyan/purple/green), reduced-motion aware, resize debounce
+One `DOMContentLoaded` listener, 9 numbered banner-commented sections: navbar scroll · mobile menu · scroll spy · IntersectionObserver reveals · smooth scroll · **plans Monthly/Compare toggle** · **coverage address checker** · form validation · apply form submit.
 
 Uses `'use strict'`, arrow functions, passive scroll listeners.
 
-### Important: Form submission is client-side only
+## Portal URLs
 
-The `#applyForm` on `apply.html` validates, logs data to console, waits 1.5s, then shows `#applySuccess`. No network request. The real "Apply Now" CTAs link directly to the external billing portal.
+Every portal CTA (navbar Apply Now + Customer Portal, hero Get Connected, 4 plan "Get This
+Plan", 4 compare-table CTAs, "Go to Customer Portal", footer Customer Portal and Submit a
+Ticket) points at `https://billing.ehconnection.com/portal/login`. The previous
+`/portal/signup` and the bare domain no longer appear in any link.
 
-### EH CONNECT does NOT sell fixed business plans
+## What was removed in the Sept 2026 redesign (do not reintroduce)
+
+- **Particle canvas** (`#particleCanvas`, `FiberParticle` class, `requestAnimationFrame` loop)
+- **Site-wide signal layer** (`.signal-layer`, `.signal-line`, `.signal-dot`, `signalTravel`/`signalPulseH/V`/`dotPulse`)
+- **3D card tilt** on mousemove (`perspective`, `rotateX/rotateY`, `--light-x`/`--light-y` dynamic reflection)
+- **Hero image carousel** (6 slides + dots, auto-rotate, 3D tilt, `hover` pause)
+- **Google Maps iframes** (coverage map + contact map) — no third-party map requests any more
+- All neon keyframes: `holoShimmer`, `gradientShift`, `floatSlow`, `glowPulse`, `borderGlow`
+- The `#contact` section, the "Why Choose Us" feature grid, the standalone
+  "How it works" section, and the CTA banner
+
+**`#faq` was dropped by mistake, not by decision.** It was restored from
+`https://ehconnection.com/` and git `c73d7d4` (the two copies were byte-identical). It is
+live content mirrored from the production site, not filler. It sits between `#testimonials`
+and `#support` because it answers pricing/contract/payment objections just before the
+closing CTA. Native `<details>` accordion, no JS.
+
+## Important: form submission is client-side only
+
+The `#applyForm` on `apply.html` validates, logs data to console, waits 1.5s, then shows `#applySuccess`. No network request. The real "Apply Now" CTAs link directly to the external billing portal. Keep it that way until a real backend exists.
+
+## EH CONNECT does NOT sell fixed business plans
 
 Copy says speeds are customizable per customer need ("custom speed plan", "tailored quote"). Don't reintroduce "business plan / enterprise plan / static IP / SLA" wording.
 
-### Favicon set
+## Favicon set
 
-- `/EH/images/favicon.ico`, `favicon.svg`, `favicon-96x96.png`, `apple-touch-icon.png`, `site.webmanifest`
-- Theme color: `#030712`
+- `/images/favicon.ico`, `favicon.svg`, `favicon-96x96.png`, `apple-touch-icon.png`, `site.webmanifest`
+- Theme color (meta + manifest): `#0A1A33` — matches the dark sections and the footer
 
-### CDN dependencies
+## CDN dependencies
 
-- Google Fonts: Inter (400–900)
-- Font Awesome 6.5.1 via cdnjs with SRI integrity hash
+- Google Fonts: Poppins (600–800), Inter (400–600), Caveat (500–600) — single combined request
+- Font Awesome 6.5.1 via cdnjs with an SRI integrity hash
 
-### Accessibility
+## Accessibility
 
-- `aria-hidden="true"` on all decorative elements (particle canvas, hero carousel glow)
-- `prefers-reduced-motion` respected: JS disables particle canvas and tilt effects; CSS sets `animation-duration: 0.01ms`
-- All interactive elements have focus-visible styles
+- `aria-hidden="true"` on all decorative elements (device mockups, star glyphs, map dots, hero overlays)
+- Every text pair meets WCAG AA. `--color-body-light` (`#7A8699`) is only 3.7:1 — don't use it for text
+- `prefers-reduced-motion` respected in both CSS and JS
+- Skip link, `focus-visible` outlines, ≥44×44px targets, `role="status"` on the coverage result
 
-### Security
+## Security
 
 - Fully static — no server-side code or data storage
 - Form doesn't send data anywhere
+- The coverage checker reflects user input into `innerHTML` and escapes it via `escapeHtml()` — keep it that way
 - No secrets in this repo; never add any

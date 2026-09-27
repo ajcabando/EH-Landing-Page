@@ -3,91 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EH CONNECT – Fast, reliable fiber internet for your home. Affordable plans, customizable speeds, 24–48 hr repair support, and lightning-fast installation.">
-  <meta name="keywords" content="ISP, fiber internet, FTTH, broadband, internet plans, EH CONNECT">
-  <meta name="theme-color" content="#0B132B">
+  <meta name="description" content="EH CONNECT – Fast fiber internet for homes in Liloan and Consolacion, Cebu. Pure fiber, unlimited data, no caps, 24–48 hour support, and installation within 24–48 hours.">
+  <meta name="keywords" content="ISP, fiber internet, FTTH, broadband, internet plans, Liloan, Consolacion, EH CONNECT">
+  <meta name="theme-color" content="#0A1A33">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="EH CONNECT – Fast & Reliable Fiber Internet">
-  <meta property="og:description" content="Experience lightning-fast speeds, reliable connectivity, and affordable plans with EH CONNECT — fiber straight to your home.">
+  <meta property="og:title" content="EH CONNECT – Fast Fiber. Powering Homes.">
+  <meta property="og:description" content="Reliable, high-speed fiber internet for homes and businesses in Liloan, Consolacion and nearby areas. Pure fiber, unlimited data, no caps.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ehconnection.com">
-  <meta property="og:image" content="https://ehconnection.com/EH/images/router-wifi.jpg">
+  <meta property="og:image" content="https://ehconnection.com/images/hero-home-dusk.jpg">
 
-  <title>EH CONNECT | Fast, Reliable Fiber Internet</title>
+  <title>EH CONNECT | Fast Fiber Internet in Liloan &amp; Consolacion, Cebu</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 (Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/EH/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 
-  <!-- Preload critical assets -->
-  <link rel="preload" as="image" href="/EH/images/router-wifi.jpg">
+  <!-- Preload critical hero asset -->
+  <link rel="preload" as="image" href="/images/hero-home-dusk.webp" type="image/webp" fetchpriority="high">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/EH/images/favicon.ico">
-  <link rel="icon" type="image/svg+xml" href="/EH/images/favicon.svg">
-  <link rel="icon" type="image/png" sizes="96x96" href="/EH/images/favicon-96x96.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/EH/images/apple-touch-icon.png">
-  <link rel="manifest" href="/EH/images/site.webmanifest">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="manifest" href="/images/site.webmanifest">
 </head>
 <body>
 
-  <!-- Site-wide fiber particle background (decorative, fixed behind content) -->
-  <canvas id="particleCanvas" class="particle-bg" aria-hidden="true"></canvas>
-
-  <!-- Site-wide moving fiber signal lines (decorative, fixed behind content) -->
-  <div class="signal-layer" aria-hidden="true">
-    <span class="signal-line"></span>
-    <span class="signal-line"></span>
-    <span class="signal-line"></span>
-    <span class="signal-line"></span>
-    <span class="signal-line"></span>
-    <span class="signal-dot"></span>
-    <span class="signal-dot"></span>
-    <span class="signal-dot"></span>
-    <span class="signal-dot"></span>
-    <span class="signal-dot"></span>
-  </div>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ==========================================
        NAVBAR
        ========================================== -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
       <!-- Brand -->
-      <a href="#home" class="navbar-brand" aria-label="EH CONNECT Home">
-        <span class="logo-icon"><img src="/EH/images/logo.png" alt="EH CONNECT"></span>
-        <span class="brand-text">
-          EH CONNECT
-          <span class="brand-sub">Internet Services</span>
-        </span>
+      <a href="#home" class="navbar-brand" aria-label="E.H Internet Connection home">
+        <img class="brand-logo" src="/images/logo-brand.png" alt="E.H Internet Connection" width="300" height="60">
+        <span class="brand-sub">Fiber Internet &middot; Liloan &middot; Consolacion</span>
       </a>
 
       <!-- Navigation Links -->
-      <div class="navbar-links">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#plans">Internet Plans</a>
+      <div class="navbar-links" id="navLinks">
+        <a href="#home" class="active" aria-current="true">Home</a>
+        <a href="#plans">Plans</a>
         <a href="#coverage">Coverage</a>
+        <a href="#support">Support</a>
+        <a href="#about">About</a>
         <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
       </div>
 
       <!-- Action Buttons -->
-      <div class="navbar-actions">
-        <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Apply Now</a>
-        <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"><i class="fas fa-user-circle"></i> Customer Portal</a>
+      <div class="navbar-actions" id="navActions">
+        <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+          <i class="fas fa-bolt" aria-hidden="true"></i> Apply Now
+        </a>
+        <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+          <i class="fas fa-user-circle" aria-hidden="true"></i> Customer Portal
+        </a>
       </div>
 
       <!-- Mobile Toggle -->
-      <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
         <span></span>
         <span></span>
         <span></span>
@@ -95,613 +81,722 @@
     </div>
   </nav>
 
-  <!-- ==========================================
-       HERO SECTION
-       ========================================== -->
-  <section id="home" class="hero" aria-label="Hero banner">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fas fa-bolt"></i> Now Serving Liloan &amp; Consolacion, Cebu
-        </div>
+  <main id="main">
 
-        <h1 class="hero-title">
-          Fast, Reliable <span class="highlight">Fiber Internet</span><br>
-          for Your Home
-        </h1>
+    <!-- ==========================================
+         HERO
+         ========================================== -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-content animate-on-scroll">
+          <p class="hero-eyebrow">Fiber Internet for a Brighter Cebu</p>
 
-        <p class="hero-subtitle">
-          Experience lightning-fast speeds, reliable connectivity, affordable plans, and 24–48 hr repair support with EH CONNECT.
-        </p>
+          <h1 class="hero-title" id="hero-title">
+            Fast Fiber.<br>
+            <span class="accent">Powering Homes.</span>
+          </h1>
 
-        <div class="hero-actions">
-          <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Connected</a>
-          <a href="#plans" class="btn btn-secondary btn-lg"><i class="fas fa-wifi"></i> View Plans</a>
-          <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg"><i class="fas fa-tools"></i> Report an Outage</a>
-        </div>
+          <p class="hero-subtitle">
+            Reliable, high-speed fiber internet for homes and businesses in Liloan,
+            Consolacion and nearby areas. Experience unlimited possibilities with EH CONNECT.
+          </p>
 
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-number">FTTH</div>
-            <div class="hero-stat-label">Fiber To The Home</div>
+          <div class="hero-actions">
+            <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+              Get Connected <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+            </a>
+            <a href="#coverage" class="btn btn-outline btn-lg">Check Coverage</a>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">Unlimited</div>
-            <div class="hero-stat-label">Data, No Caps</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">Local</div>
-            <div class="hero-stat-label">Cebu-Based Team</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="hero-visual">
-        <div class="hero-network-stage">
-          <div class="network-orbit network-orbit-one" aria-hidden="true"></div>
-          <div class="network-orbit network-orbit-two" aria-hidden="true"></div>
-          <span class="network-node network-node-one" aria-hidden="true"></span>
-          <span class="network-node network-node-two" aria-hidden="true"></span>
-          <span class="network-node network-node-three" aria-hidden="true"></span>
-          <div class="hero-photo hero-carousel" aria-roledescription="carousel" aria-label="EH CONNECT network and installation photos">
-            <div class="hero-carousel-track">
-              <img class="hero-carousel-slide is-active" src="/EH/images/router-wifi.jpg" alt="Modern WiFi 6 router on a wooden desk, ready for high-speed home internet" fetchpriority="high">
-              <img class="hero-carousel-slide" src="/EH/images/fiber-optic.jpg" alt="Fiber optic cables connected in a network rack, showcasing high-speed infrastructure" loading="lazy">
-              <img class="hero-carousel-slide" src="/EH/images/family-laptop.jpg" alt="Happy family gathered around a laptop at home, enjoying fast internet connectivity" loading="lazy">
-              <img class="hero-carousel-slide" src="/EH/images/streaming-setup.jpg" alt="Modern dual-monitor streaming and gaming setup powered by fiber internet" loading="lazy">
-              <img class="hero-carousel-slide" src="/EH/images/secure-home-network.jpg" alt="Secure home network setup with router and connected devices" loading="lazy">
-              <img class="hero-carousel-slide" src="/EH/images/home-internet-speed.png" alt="Infographic showing tips to make home internet faster" loading="lazy">
-            </div>
-            <div class="hero-photo-glow" aria-hidden="true"></div>
-
-            <!-- Carousel dots -->
-            <div class="hero-carousel-dots" role="tablist" aria-label="Choose photo">
-              <button class="hero-carousel-dot is-active" role="tab" aria-label="Photo 1" aria-selected="true"></button>
-              <button class="hero-carousel-dot" role="tab" aria-label="Photo 2" aria-selected="false"></button>
-              <button class="hero-carousel-dot" role="tab" aria-label="Photo 3" aria-selected="false"></button>
-              <button class="hero-carousel-dot" role="tab" aria-label="Photo 4" aria-selected="false"></button>
-              <button class="hero-carousel-dot" role="tab" aria-label="Photo 5" aria-selected="false"></button>
-              <button class="hero-carousel-dot" role="tab" aria-label="Photo 6" aria-selected="false"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       WHY CHOOSE EH CONNECT
-       ========================================== -->
-  <section id="about" class="features" aria-label="Why choose EH CONNECT">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-star"></i> Why Choose Us</div>
-        <h2 class="section-title">Designed for Speed, Built for Reliability</h2>
-        <p class="section-subtitle">We combine cutting-edge fiber technology with responsive repair support to deliver the internet experience you deserve.</p>
-      </div>
-
-      <!-- Image + text split -->
-      <div class="about-split">
-        <div class="about-collage animate-on-scroll-left">
-          <img class="about-collage-main" src="/EH/images/technician.jpg" alt="EH CONNECT technician installing fiber equipment at a customer's home" loading="lazy">
-          <img class="about-collage-secondary glass-card" src="/EH/images/server-room.jpg" alt="EH CONNECT core network rack with fiber cabling" loading="lazy">
-          <div class="about-collage-badge glass-card" aria-hidden="true">
-            <i class="fas fa-certificate"></i>
-            <span>Certified<br>Technicians</span>
-          </div>
-        </div>
-
-        <div class="about-text animate-on-scroll-right">
-          <h3>Your Local Fiber Internet Provider</h3>
-          <p>EH CONNECT is a community-based ISP serving Liloan and Consolacion, Cebu. We build, operate, and maintain our own fiber network — so when you call, you talk to the same team that runs the cables to your home.</p>
-          <ul class="about-checklist">
-            <li><i class="fas fa-circle-check"></i> Professional installation within 24–48 hours</li>
-            <li><i class="fas fa-circle-check"></i> Own fiber backbone with redundant routing</li>
-            <li><i class="fas fa-circle-check"></i> 24–48 hour repair and restoration support</li>
-            <li><i class="fas fa-circle-check"></i> Transparent pricing, no hidden fees</li>
+          <ul class="hero-trust">
+            <li class="hero-trust-item">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+              <span class="hero-trust-label"><span>Pure Fiber</span><br><span>Connection</span></span>
+            </li>
+            <li class="hero-trust-item">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-infinity"></i></span>
+              <span class="hero-trust-label"><span>Unlimited Data</span><br><span>No Caps</span></span>
+            </li>
+            <li class="hero-trust-item">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-headset"></i></span>
+              <span class="hero-trust-label"><span>24&ndash;48 Hr</span><br><span>Support</span></span>
+            </li>
+            <li class="hero-trust-item">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-users"></i></span>
+              <span class="hero-trust-label"><span>Local Cebu</span><br><span>Team</span></span>
+            </li>
           </ul>
-          <a href="#contact" class="btn btn-secondary"><i class="fas fa-phone-alt"></i> Talk to Our Team</a>
-        </div>
-      </div>
-
-      <div class="features-grid stagger-children">
-        <div class="glass-card feature-card">
-          <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
-          <h3>Fiber Internet</h3>
-          <p>Pure fiber-optic connections delivering symmetrical speeds up to 1 Gbps for seamless browsing, streaming, and gaming.</p>
         </div>
 
-        <div class="glass-card feature-card">
-          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-          <h3>Fast Installation</h3>
-          <p>Professional installation within 24–48 hours. Our certified technicians get you connected quickly with minimal disruption.</p>
-        </div>
-
-        <div class="glass-card feature-card">
-          <div class="feature-icon"><i class="fas fa-tag"></i></div>
-          <h3>Affordable Plans</h3>
-          <p>Competitive pricing with no hidden fees. Flexible monthly plans that fit every budget, from basic to ultra-fast.</p>
-        </div>
-
-        <div class="glass-card feature-card">
-          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3>Reliable Network</h3>
-          <p>99.9% uptime with redundant routing and proactive monitoring. We keep you connected when it matters most.</p>
-        </div>
-
-        <div class="glass-card feature-card">
-          <div class="feature-icon"><i class="fas fa-tools"></i></div>
-          <h3>24–48 Hr Repair Support</h3>
-          <p>If an issue arises, our certified technicians will be on-site within 24–48 hours to diagnose and restore your connection. We keep downtime to a minimum.</p>
-        </div>
-
-        <div class="glass-card feature-card">
-          <div class="feature-icon"><i class="fas fa-sliders"></i></div>
-          <h3>Customizable Speed</h3>
-          <p>Every household is different. Tell us what you need and we'll customize your connection speed to match — no rigid packages.</p>
-        </div>
-      </div>
-
-      <!-- Home & Custom duo -->
-      <div class="audience-grid stagger-children">
-        <div class="audience-card">
-          <img src="/EH/images/home-streaming.jpg" alt="Smart TV streaming at home over EH CONNECT fiber internet" loading="lazy">
-          <div class="audience-card-body">
-            <h3><i class="fas fa-house-chimney"></i> For Your Home</h3>
-            <p>Stream in 4K, game without lag, and keep every device in the house connected — all at the same time, with unlimited data.</p>
+        <div class="hero-visual animate-on-scroll-right">
+          <div class="hero-photo">
+            <picture>
+              <source srcset="/images/hero-home-dusk.webp" type="image/webp">
+              <img src="/images/hero-home-dusk.jpg" alt="Modern glass-walled home in Cebu at dusk, warmly lit inside, with city lights in the distance" width="1600" height="1067" fetchpriority="high">
+            </picture>
+            <span class="hero-photo-glow" aria-hidden="true"></span>
+            <span class="hero-script" aria-hidden="true">Liloan<br>Consolacion<br>Cebu</span>
+            <span class="hero-pin hero-pin--one" aria-hidden="true">
+              <i class="fas fa-map-marker-alt"></i> Pure fiber to your door
+            </span>
+            <span class="hero-pin hero-pin--two" aria-hidden="true">
+              <i class="fas fa-wifi"></i> Connected in 24&ndash;48 hrs
+            </span>
           </div>
-        </div>
 
-        <div class="audience-card">
-          <img src="/EH/images/business-team.jpg" alt="A connected household with multiple devices online over EH CONNECT fiber internet" loading="lazy">
-          <div class="audience-card-body">
-            <h3><i class="fas fa-sliders"></i> Built Around Your Needs</h3>
-            <p>We don't offer one-size-fits-all packages. Need more speed for a busy household or a small shop? We'll customize your connection to match exactly what you need.</p>
+          <div class="hero-chip" aria-hidden="true">
+            <span class="icon-tile icon-tile--sm icon-tile--circle"><i class="fas fa-gauge-high"></i></span>
+            <span>
+              <span class="hero-chip-value">200 Mbps</span>
+              <span class="hero-chip-label">Fastest plan</span>
+            </span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-       HOW IT WORKS
-       ========================================== -->
-  <section id="how-it-works" class="how-it-works" aria-label="How to get connected">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-route"></i> How It Works</div>
-        <h2 class="section-title">Get Connected in 3 Easy Steps</h2>
-        <p class="section-subtitle">From application to blazing-fast fiber in as little as 48 hours.</p>
-      </div>
-
-      <div class="steps-grid stagger-children">
-        <div class="glass-card step-card">
-          <div class="step-number">1</div>
-          <div class="feature-icon"><i class="fas fa-file-signature"></i></div>
-          <h3>Apply Online</h3>
-          <p>Choose a plan and submit your application through our online portal in just a few minutes.</p>
-        </div>
-
-        <div class="step-connector" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
-
-        <div class="glass-card step-card">
-          <div class="step-number">2</div>
-          <div class="feature-icon"><i class="fas fa-screwdriver-wrench"></i></div>
-          <h3>We Install</h3>
-          <p>Our certified technicians install your fiber connection within 24–48 hours — free of charge.</p>
-        </div>
-
-        <div class="step-connector" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
-
-        <div class="glass-card step-card">
-          <div class="step-number">3</div>
-          <div class="feature-icon"><i class="fas fa-wifi"></i></div>
-          <h3>Enjoy Fiber</h3>
-          <p>Start streaming, gaming, and working with unlimited data and fast repair support if anything goes wrong.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       INTERNET PLANS
-       ========================================== -->
-  <section id="plans" class="plans" aria-label="Internet plans and pricing">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-wifi"></i> Internet Plans</div>
-        <h2 class="section-title">Choose Your Perfect Plan</h2>
-        <p class="section-subtitle">Every plan includes unlimited data, free installation, and 24–48 hr repair support. Upgrade anytime.</p>
-      </div>
-
-      <div class="plans-grid stagger-children">
-        <!-- Plan: BASIC (Most Popular) -->
-        <div class="glass-card plan-card featured">
-          <div class="plan-badge"><i class="fas fa-star"></i> Most Popular</div>
-          <div class="plan-name">Basic</div>
-          <div class="plan-speed">Up to 80 <span class="speed-unit">Mbps</span></div>
-          <div class="plan-price">
-            <span class="price-amount">₱1,000</span>
-            <span class="price-period">/month</span>
+    <!-- ==========================================
+         PLANS
+         ========================================== -->
+    <section id="plans" class="plans" aria-labelledby="plans-title">
+      <div class="container">
+        <div class="section-header section-header--split animate-on-scroll">
+          <div>
+            <p class="section-eyebrow">Our Plans</p>
+            <h2 class="section-title" id="plans-title">Choose the Perfect Plan for Your Home</h2>
+            <p class="section-subtitle">Simple, transparent plans with unlimited data. All plans come with pure fiber connection and reliable local support.</p>
           </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> Unlimited Data Cap</li>
-            <li><i class="fas fa-check"></i> Ideal for Standard Streaming</li>
-            <li><i class="fas fa-check"></i> Free Installation</li>
-            <li><i class="fas fa-check"></i> 24–48 Hr Repair Support</li>
-            <li><i class="fas fa-check"></i> No Lock-in Contract</li>
-          </ul>
-          <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%"><i class="fas fa-rocket"></i> Apply Now</a>
-        </div>
 
-        <!-- Plan: BRONZE -->
-        <div class="glass-card plan-card">
-          <div class="plan-name">Bronze</div>
-          <div class="plan-speed">Up to 100 <span class="speed-unit">Mbps</span></div>
-          <div class="plan-price">
-            <span class="price-amount">₱1,299</span>
-            <span class="price-period">/month</span>
+          <div class="plans-toggle" role="tablist" aria-label="Plan view">
+            <button type="button" role="tab" id="tab-cards" aria-selected="true" aria-controls="panel-cards" tabindex="0">
+              <span class="toggle-dot" aria-hidden="true"></span> Monthly
+            </button>
+            <button type="button" role="tab" id="tab-compare" aria-selected="false" aria-controls="panel-compare" tabindex="-1">
+              Compare Plans <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+            </button>
           </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> Unlimited Data Cap</li>
-            <li><i class="fas fa-check"></i> Smooth HD Streaming</li>
-            <li><i class="fas fa-check"></i> Multiple Devices Supported</li>
-            <li><i class="fas fa-check"></i> Free Installation</li>
-            <li><i class="fas fa-check"></i> 24–48 Hr Repair Support</li>
-          </ul>
-          <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width:100%"><i class="fas fa-rocket"></i> Apply Now</a>
         </div>
 
-        <!-- Plan: SILVER -->
-        <div class="glass-card plan-card">
-          <div class="plan-name">Silver</div>
-          <div class="plan-speed">Up to 150 <span class="speed-unit">Mbps</span></div>
-          <div class="plan-price">
-            <span class="price-amount">₱1,599</span>
-            <span class="price-period">/month</span>
-          </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> Unlimited Data Cap</li>
-            <li><i class="fas fa-check"></i> Perfect for Gaming &amp; 4K Streaming</li>
-            <li><i class="fas fa-check"></i> Work-From-Home Ready</li>
-            <li><i class="fas fa-check"></i> Free Installation</li>
-            <li><i class="fas fa-check"></i> Priority Support</li>
-          </ul>
-          <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width:100%"><i class="fas fa-rocket"></i> Apply Now</a>
-        </div>
+        <!-- Panel: Plan cards -->
+        <div id="panel-cards" role="tabpanel" aria-labelledby="tab-cards">
+          <div class="plans-grid stagger-children">
 
-        <!-- Plan: GOLD -->
-        <div class="glass-card plan-card">
-          <div class="plan-name">Gold</div>
-          <div class="plan-speed">Up to 200 <span class="speed-unit">Mbps</span></div>
-          <div class="plan-price">
-            <span class="price-amount">₱1,899</span>
-            <span class="price-period">/month</span>
-          </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> Unlimited Data Cap</li>
-            <li><i class="fas fa-check"></i> Ultimate Multi-User Experience</li>
-            <li><i class="fas fa-check"></i> Dedicated Support Line</li>
-            <li><i class="fas fa-check"></i> Free Installation</li>
-            <li><i class="fas fa-check"></i> Premium Router Included</li>
-          </ul>
-          <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width:100%"><i class="fas fa-rocket"></i> Apply Now</a>
-        </div>
-      </div>
-
-      <p class="plans-note animate-on-scroll"><i class="fas fa-circle-info"></i> Need a different speed? We can customize your connection based on your needs — <a href="#contact">contact us</a> for a tailored plan.</p>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       COVERAGE
-       ========================================== -->
-  <section id="coverage" class="coverage" aria-label="Service coverage areas">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-map-marker-alt"></i> Coverage</div>
-        <h2 class="section-title">Check Our Service Areas</h2>
-        <p class="section-subtitle">We're rapidly expanding across the region. See if EH CONNECT is available in your area.</p>
-      </div>
-
-      <div class="coverage-grid animate-on-scroll">
-        <div class="coverage-info">
-          <div class="coverage-areas">
-            <div class="coverage-area">
-              <h4><i class="fas fa-water"></i> Liloan</h4>
-              <ul>
-                <li>Sta. Cruz</li>
-                <li>San Vicente</li>
-                <li>Sambag</li>
-                <li>Poblacion</li>
-                <li>Catarman</li>
-                <li>Tayud</li>
-                <li>Yati (portions)</li>
-                <li>Cogon</li>
-                <li>Bahak</li>
+            <!-- BASIC -->
+            <article class="plan-card">
+              <div class="plan-head">
+                <span class="icon-tile icon-tile--sm" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+                <h3 class="plan-name">Basic</h3>
+              </div>
+              <p class="plan-price">
+                <span class="plan-price-amount">&#8369;1,000</span>
+                <span class="plan-price-period">/month</span>
+              </p>
+              <p class="plan-speed">Up to 80 <span class="speed-unit">Mbps</span></p>
+              <ul class="plan-features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Unlimited data</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Pure fiber connection</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Ideal for basic browsing, social media and streaming</li>
               </ul>
-            </div>
-            <div class="coverage-area">
-              <h4><i class="fas fa-tree"></i> Consolacion</h4>
-              <ul>
-                <li>Poblacion Oriental</li>
-                <li>Bamboo Hills</li>
-                <li>Tugbongab</li>
-                <li>Nangka</li>
-                <li>Eversley</li>
+              <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block">Get This Plan</a>
+            </article>
+
+            <!-- BRONZE -->
+            <article class="plan-card">
+              <div class="plan-head">
+                <span class="icon-tile icon-tile--sm" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+                <h3 class="plan-name">Bronze</h3>
+              </div>
+              <p class="plan-price">
+                <span class="plan-price-amount">&#8369;1,299</span>
+                <span class="plan-price-period">/month</span>
+              </p>
+              <p class="plan-speed">Up to 100 <span class="speed-unit">Mbps</span></p>
+              <ul class="plan-features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Unlimited data</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Pure fiber connection</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Great for families and multiple devices</li>
               </ul>
+              <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block">Get This Plan</a>
+            </article>
+
+            <!-- SILVER (featured) -->
+            <article class="plan-card plan-card--featured">
+              <p class="plan-flag">Most Popular</p>
+              <div class="plan-head" style="margin-top:1.6rem">
+                <span class="icon-tile icon-tile--sm" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+                <h3 class="plan-name">Silver</h3>
+              </div>
+              <p class="plan-price">
+                <span class="plan-price-amount">&#8369;1,599</span>
+                <span class="plan-price-period">/month</span>
+              </p>
+              <p class="plan-speed">Up to 150 <span class="speed-unit">Mbps</span></p>
+              <ul class="plan-features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Unlimited data</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Pure fiber connection</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Perfect for streaming, gaming and work from home</li>
+              </ul>
+              <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Get This Plan</a>
+            </article>
+
+            <!-- GOLD -->
+            <article class="plan-card">
+              <div class="plan-head">
+                <span class="icon-tile icon-tile--sm" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+                <h3 class="plan-name">Gold</h3>
+              </div>
+              <p class="plan-price">
+                <span class="plan-price-amount">&#8369;1,899</span>
+                <span class="plan-price-period">/month</span>
+              </p>
+              <p class="plan-speed">Up to 200 <span class="speed-unit">Mbps</span></p>
+              <ul class="plan-features">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Unlimited data</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Pure fiber connection</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Best for heavy users and smart homes</li>
+              </ul>
+              <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block">Get This Plan</a>
+            </article>
+
+          </div>
+
+          <p class="plans-note animate-on-scroll">
+            <i class="fas fa-circle-info" aria-hidden="true"></i>
+            Need a different speed? We customize your connection to fit your needs &mdash;
+            <a href="#support">talk to our team</a> for a tailored quote.
+          </p>
+        </div>
+
+        <!-- Panel: Comparison table -->
+        <div id="panel-compare" role="tabpanel" aria-labelledby="tab-compare" hidden>
+          <div class="plans-compare">
+            <table>
+              <caption class="visually-hidden">Feature comparison of the Basic, Bronze, Silver and Gold fiber internet plans</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  <th scope="col">Basic</th>
+                  <th scope="col">Bronze</th>
+                  <th scope="col" class="is-featured">Silver</th>
+                  <th scope="col">Gold</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Monthly price</th>
+                  <td>&#8369;1,000</td>
+                  <td>&#8369;1,299</td>
+                  <td class="col-featured">&#8369;1,599</td>
+                  <td>&#8369;1,899</td>
+                </tr>
+                <tr>
+                  <th scope="row">Speed</th>
+                  <td>Up to 80 Mbps</td>
+                  <td>Up to 100 Mbps</td>
+                  <td class="col-featured">Up to 150 Mbps</td>
+                  <td>Up to 200 Mbps</td>
+                </tr>
+                <tr>
+                  <th scope="row">Data</th>
+                  <td>Unlimited</td>
+                  <td>Unlimited</td>
+                  <td class="col-featured">Unlimited</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <th scope="row">Installation</th>
+                  <td>Free</td>
+                  <td>Free</td>
+                  <td class="col-featured">Free</td>
+                  <td>Free</td>
+                </tr>
+                <tr>
+                  <th scope="row">Contract</th>
+                  <td>No lock-in</td>
+                  <td>Ask our team</td>
+                  <td class="col-featured">Ask our team</td>
+                  <td>Ask our team</td>
+                </tr>
+                <tr>
+                  <th scope="row">Support</th>
+                  <td>24&ndash;48 hr repair</td>
+                  <td>24&ndash;48 hr repair</td>
+                  <td class="col-featured">Priority support</td>
+                  <td>Dedicated support line</td>
+                </tr>
+                <tr>
+                  <th scope="row">Best for</th>
+                  <td>Basic browsing &amp; streaming</td>
+                  <td>Families, multiple devices</td>
+                  <td class="col-featured">Gaming &amp; work from home</td>
+                  <td>Heavy users &amp; smart homes</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td><a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">Get This Plan</a></td>
+                  <td><a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">Get This Plan</a></td>
+                  <td class="col-featured"><a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-block">Get This Plan</a></td>
+                  <td><a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">Get This Plan</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="plans-note">
+            <i class="fas fa-circle-info" aria-hidden="true"></i>
+            All plans are pure fiber with unlimited data, free installation and 24&ndash;48 hour repair support.
+            Need something else? <a href="#support">Ask our team</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         COVERAGE
+         ========================================== -->
+    <section id="coverage" class="coverage on-dark" aria-labelledby="coverage-title">
+      <picture>
+        <source srcset="/images/coverage-texture.webp" type="image/webp">
+        <img class="coverage-bg" src="/images/coverage-texture.jpg" alt="" width="1600" height="1067" loading="lazy">
+      </picture>
+
+      <div class="container">
+        <div class="coverage-copy animate-on-scroll-left">
+          <p class="section-eyebrow">Our Coverage</p>
+          <h2 class="section-title" id="coverage-title">Fiber Internet in <span class="accent">Liloan &amp; Consolacion</span></h2>
+          <p class="section-subtitle">We are expanding our fiber network to serve more homes and businesses in Liloan, Consolacion and nearby areas.</p>
+
+          <form class="coverage-check" id="coverageForm" role="search" novalidate>
+            <div class="coverage-check-field">
+              <i class="fas fa-location-dot" aria-hidden="true"></i>
+              <label for="addressInput" class="visually-hidden">Enter your address to check availability</label>
+              <input type="text" id="addressInput" name="address" placeholder="Enter your address" autocomplete="street-address" spellcheck="false">
+            </div>
+            <button type="submit" class="btn btn-primary">Check Coverage</button>
+          </form>
+
+          <p class="coverage-result" id="coverageResult" role="status" aria-live="polite" hidden></p>
+
+          <ul class="coverage-stats">
+            <li class="coverage-stat">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+              <span class="coverage-stat-label"><span>Liloan</span><br><span>Covered Areas</span></span>
+            </li>
+            <li class="coverage-stat">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-tree"></i></span>
+              <span class="coverage-stat-label"><span>Consolacion</span><br><span>Covered Areas</span></span>
+            </li>
+            <li class="coverage-stat">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-city"></i></span>
+              <span class="coverage-stat-label"><span>Expanding</span><br><span>to More Areas</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="coverage-map animate-on-scroll-right">
+          <svg viewBox="0 0 560 440" role="img" aria-label="Map of EH CONNECT fiber coverage across Liloan, Consolacion and Cebu City, showing the service area and nearby expansion areas">
+            <defs>
+              <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#7fd4ff" stop-opacity="0.55" />
+                <stop offset="100%" stop-color="#7fd4ff" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+
+            <!-- Coverage glow -->
+            <circle cx="285" cy="220" r="175" fill="url(#nodeGlow)" />
+
+            <!-- Connection links -->
+            <g>
+              <path class="map-link map-link--active" d="M285 220 L200 110" />
+              <path class="map-link map-link--active" d="M285 220 L160 220" />
+              <path class="map-link map-link--active" d="M285 220 L210 330" />
+              <path class="map-link map-link--active" d="M285 220 L355 120" />
+              <path class="map-link map-link--active" d="M200 110 L160 220" />
+              <path class="map-link map-link--active" d="M160 220 L210 330" />
+              <path class="map-link map-link--active" d="M210 330 L355 120" />
+              <path class="map-link" d="M285 220 L420 130" />
+              <path class="map-link" d="M285 220 L470 215" />
+            </g>
+
+            <!-- Expansion nodes -->
+            <g opacity="0.5">
+              <circle class="map-node" cx="420" cy="130" r="4" />
+              <circle class="map-node" cx="470" cy="215" r="4" />
+            </g>
+
+            <!-- Service nodes -->
+            <g>
+              <circle class="map-pulse" cx="285" cy="220" r="10" />
+              <circle class="map-node map-node--hub" cx="285" cy="220" r="7" />
+
+              <circle class="map-pulse" cx="200" cy="110" r="8" style="animation-delay:.6s" />
+              <circle class="map-node" cx="200" cy="110" r="5" />
+
+              <circle class="map-pulse" cx="160" cy="220" r="8" style="animation-delay:1.2s" />
+              <circle class="map-node" cx="160" cy="220" r="5" />
+
+              <circle class="map-pulse" cx="210" cy="330" r="8" style="animation-delay:1.8s" />
+              <circle class="map-node" cx="210" cy="330" r="5" />
+
+              <circle class="map-pulse" cx="355" cy="120" r="8" style="animation-delay:2.4s" />
+              <circle class="map-node" cx="355" cy="120" r="5" />
+            </g>
+
+            <!-- Labels -->
+            <text class="map-label" x="288" y="200" text-anchor="middle">Liloan</text>
+            <text class="map-label" x="200" y="88" text-anchor="middle">Consolacion</text>
+            <text class="map-label" x="212" y="362" text-anchor="middle">Cebu City</text>
+            <text class="map-label--minor map-label" x="420" y="108" text-anchor="middle">Expanding</text>
+            <text class="map-label--minor map-label" x="470" y="195" text-anchor="middle">Coming soon</text>
+          </svg>
+
+          <div class="coverage-legend">
+            <h4>Legend</h4>
+            <ul>
+              <li><span class="dot dot--coverage" aria-hidden="true"></span> Our Fiber Coverage</li>
+              <li><span class="dot dot--service" aria-hidden="true"></span> Service Area</li>
+              <li><span class="dot dot--expansion" aria-hidden="true"></span> Expansion Area</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CUSTOMER PORTAL
+         ========================================== -->
+    <section id="portal" class="portal" aria-labelledby="portal-title">
+      <div class="container">
+        <div class="portal-devices animate-on-scroll-left" aria-hidden="true">
+          <div class="device-laptop">
+            <div class="device-laptop-screen">
+              <div class="mock-ui">
+                <div class="mock-sidebar">
+                  <div class="mock-brand"><span class="mark"></span> EH</div>
+                  <div class="mock-nav is-active"><span class="ico"></span> Dashboard</div>
+                  <div class="mock-nav"><span class="ico"></span> Bills &amp; Payments</div>
+                  <div class="mock-nav"><span class="ico"></span> Receipts</div>
+                  <div class="mock-nav"><span class="ico"></span> Support Tickets</div>
+                  <div class="mock-nav"><span class="ico"></span> Internet Status</div>
+                  <div class="mock-nav"><span class="ico"></span> Profile</div>
+                </div>
+                <div class="mock-main">
+                  <div class="mock-topbar">
+                    <span class="crumb">Dashboard</span>
+                    <span class="mock-card-sub">EH CONNECT</span>
+                  </div>
+                  <p class="mock-greet"><strong>Good day, Juan Dela Cruz</strong>Manage your account, view bills, make payments and more.</p>
+                  <div class="mock-cards">
+                    <div class="mock-card">
+                      <span class="mock-card-label">Current Plan</span>
+                      <p class="mock-card-value">Silver</p>
+                      <span class="mock-card-sub">150 Mbps</span>
+                    </div>
+                    <div class="mock-card">
+                      <span class="mock-card-label">Amount Due</span>
+                      <p class="mock-card-value">&#8369;1,599</p>
+                      <span class="mock-btn">Pay Now</span>
+                    </div>
+                  </div>
+                  <div class="mock-actions">
+                    <div class="mock-action"><span class="ico"></span><span>View Bills</span></div>
+                    <div class="mock-action"><span class="ico"></span><span>Make Payment</span></div>
+                    <div class="mock-action"><span class="ico"></span><span>Receipts</span></div>
+                    <div class="mock-action"><span class="ico"></span><span>Support Ticket</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="device-laptop-base"></div>
+          </div>
+
+          <div class="device-phone">
+            <div class="device-phone-screen">
+              <div class="device-notch"></div>
+              <div class="mock-phone-main">
+                <p class="mock-greet"><strong>Good day, Juan</strong>Silver &middot; 150 Mbps</p>
+                <div class="mock-phone-row">
+                  <div class="mock-phone-card">
+                    <span class="mock-card-label">Amount Due</span>
+                    <p class="mock-card-value">&#8369;1,599</p>
+                    <span class="mock-btn">Pay Now</span>
+                  </div>
+                  <div class="mock-phone-card">
+                    <span class="mock-card-label">Plan</span>
+                    <p class="mock-card-value">Silver</p>
+                    <span class="mock-card-sub">150 Mbps</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-tabbar">
+                <span class="ico is-active"></span>
+                <span class="ico"></span>
+                <span class="ico"></span>
+                <span class="ico"></span>
+                <span class="ico"></span>
+              </div>
             </div>
           </div>
-          <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-search-location"></i> Check Availability</a>
         </div>
 
-        <div class="coverage-map">
-          <iframe
-            data-src="https://www.google.com/maps?q=Liloan+Cebu+Philippines&output=embed"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="EH CONNECT Coverage Map"
-            aria-label="Google Map showing EH CONNECT coverage area in Liloan, Cebu"
-          ></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="portal-copy animate-on-scroll-right">
+          <p class="section-eyebrow">Customer Portal</p>
+          <h2 class="section-title" id="portal-title">Your Account at Your Fingertips</h2>
+          <p class="section-subtitle">Check your bills, make payments, view receipts, submit support tickets and manage your account anytime, anywhere.</p>
 
-  <!-- ==========================================
-       CUSTOMER PORTAL
-       ========================================== -->
-  <section id="portal" class="portal" aria-label="Customer portal features">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-user-circle"></i> Customer Portal</div>
-        <h2 class="section-title">Manage Your Account Online</h2>
-        <p class="section-subtitle">Access everything you need from the convenience of your device. Pay bills, track tickets, and more.</p>
-      </div>
+          <ul class="portal-features">
+            <li>
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-file-invoice"></i></span>
+              View Bills and Due Dates
+            </li>
+            <li>
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-credit-card"></i></span>
+              Online Payments
+            </li>
+            <li>
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-download"></i></span>
+              Download Receipts
+            </li>
+            <li>
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-ticket-alt"></i></span>
+              Submit and Track Support Tickets
+            </li>
+            <li>
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-user-gear"></i></span>
+              Manage Your Account
+            </li>
+          </ul>
 
-      <div class="portal-features-grid stagger-children">
-        <div class="glass-card portal-feature-card">
-          <div class="feature-icon"><i class="fas fa-file-invoice"></i></div>
-          <h4>View Bills</h4>
-          <p>Check your current and past billing statements anytime.</p>
-        </div>
-
-        <div class="glass-card portal-feature-card">
-          <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
-          <h4>Pay Online</h4>
-          <p>Secure online payments via GCash, Maya, credit card, and more.</p>
-        </div>
-
-        <div class="glass-card portal-feature-card">
-          <div class="feature-icon"><i class="fas fa-history"></i></div>
-          <h4>Payment History</h4>
-          <p>View your complete payment history with detailed records.</p>
-        </div>
-
-        <div class="glass-card portal-feature-card">
-          <div class="feature-icon"><i class="fas fa-download"></i></div>
-          <h4>Download Receipts</h4>
-          <p>Download and print official receipts for your payments.</p>
-        </div>
-
-        <div class="glass-card portal-feature-card">
-          <div class="feature-icon"><i class="fas fa-ticket-alt"></i></div>
-          <h4>Support Tickets</h4>
-          <p>Submit and track technical support requests in real-time.</p>
-        </div>
-
-        <div class="glass-card portal-feature-card">
-          <div class="feature-icon"><i class="fas fa-user-cog"></i></div>
-          <h4>Account Information</h4>
-          <p>Update your profile, contact details, and account preferences.</p>
+          <a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+            Go to Customer Portal <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
+    </section>
 
-      <div class="portal-cta animate-on-scroll">
-        <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg"><i class="fas fa-external-link-alt"></i> Go to Customer Portal</a>
-      </div>
-    </div>
-  </section>
+    <!-- ==========================================
+         GET CONNECTED
+         ========================================== -->
+    <section id="about" class="steps" aria-labelledby="steps-title">
+      <div class="container">
+        <div class="steps-copy animate-on-scroll-left">
+          <p class="section-eyebrow">Get Connected</p>
+          <h2 class="section-title" id="steps-title">It&rsquo;s Easy to Get Started</h2>
+          <p class="section-subtitle">Join hundreds of homes and businesses already enjoying fast and reliable fiber internet. EH CONNECT is a proudly local Cebu company &mdash; when you call, you talk to the same team that runs the cables to your home.</p>
 
-  <!-- ==========================================
-       TESTIMONIALS
-       ========================================== -->
-  <section id="testimonials" class="testimonials" aria-label="Customer testimonials">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-comment-dots"></i> Testimonials</div>
-        <h2 class="section-title">What Our Subscribers Say</h2>
-        <p class="section-subtitle">Real feedback from subscribers connected to EH CONNECT.</p>
-      </div>
+          <ol class="steps-flow">
+            <li class="step">
+              <div class="step-top">
+                <span class="step-num" aria-hidden="true">1</span>
+                <span class="icon-tile" aria-hidden="true"><i class="fas fa-location-dot"></i></span>
+              </div>
+              <div class="step-body">
+                <h3>Check Coverage</h3>
+                <p>Enter your address and confirm if your area is serviceable.</p>
+              </div>
+            </li>
+            <li class="step-connector" aria-hidden="true"><i class="fas fa-arrow-right"></i></li>
+            <li class="step">
+              <div class="step-top">
+                <span class="step-num" aria-hidden="true">2</span>
+                <span class="icon-tile" aria-hidden="true"><i class="fas fa-file-signature"></i></span>
+              </div>
+              <div class="step-body">
+                <h3>Apply</h3>
+                <p>Fill out a simple application and choose your plan.</p>
+              </div>
+            </li>
+            <li class="step-connector" aria-hidden="true"><i class="fas fa-arrow-right"></i></li>
+            <li class="step">
+              <div class="step-top">
+                <span class="step-num" aria-hidden="true">3</span>
+                <span class="icon-tile" aria-hidden="true"><i class="fas fa-screwdriver-wrench"></i></span>
+              </div>
+              <div class="step-body">
+                <h3>Installation</h3>
+                <p>Our team will install your fiber connection, usually within 24&ndash;48 hours.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
 
-      <div class="testimonials-grid stagger-children">
-        <div class="glass-card testimonial-card">
-          <div class="testimonial-stars" aria-label="5 out of 5 stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <div class="steps-media animate-on-scroll-right">
+          <div class="steps-photo">
+            <img src="/images/technician.jpg" alt="EH CONNECT technician installing and testing fiber equipment at a customer premises" width="1200" height="801" loading="lazy">
           </div>
-          <p class="testimonial-quote">"Installation was done the day after I applied. Streaming and video calls have been flawless ever since — best ISP we've had in Liloan."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" aria-hidden="true">MR</div>
-            <div>
-              <div class="testimonial-name">Maria R.</div>
-              <div class="testimonial-role">Home Subscriber · Poblacion, Liloan</div>
+          <div class="steps-badge">
+            <span class="icon-tile" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+            <span>
+              <span class="steps-badge-value">Professional Installation</span>
+              <span class="steps-badge-label">Typically completed within 24&ndash;48 hours</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TESTIMONIALS
+         ========================================== -->
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header section-header--center animate-on-scroll">
+          <p class="section-eyebrow">What Our Customers Say</p>
+          <h2 class="section-title" id="testimonials-title">Trusted by Homes and Businesses</h2>
+          <p class="section-subtitle">Real stories from our valued customers in Liloan, Consolacion and nearby areas.</p>
+        </div>
+
+        <div class="testimonials-grid stagger-children">
+          <figure class="card testimonial-card">
+            <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5">
+              <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
             </div>
+            <blockquote class="testimonial-quote">&ldquo;Stable and fast internet! Perfect for our family. Streaming and online classes with no problems.&rdquo;</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-avatar" aria-hidden="true">MS</span>
+              <span>
+                <span class="testimonial-name">Maria S.</span><br>
+                <span class="testimonial-role">Liloan, Cebu</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="card testimonial-card">
+            <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5">
+              <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+            </div>
+            <blockquote class="testimonial-quote">&ldquo;Very responsive support team. They installed quickly and the connection has been reliable.&rdquo;</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-avatar" aria-hidden="true">RC</span>
+              <span>
+                <span class="testimonial-name">Ralph C.</span><br>
+                <span class="testimonial-role">Consolacion, Cebu</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="card testimonial-card">
+            <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5">
+              <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+            </div>
+            <blockquote class="testimonial-quote">&ldquo;Great service and affordable plans. Highly recommended for anyone in the area!&rdquo;</blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-avatar" aria-hidden="true">JM</span>
+              <span>
+                <span class="testimonial-name">Jessa M.</span><br>
+                <span class="testimonial-role">Liloan, Cebu</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ
+         ========================================== -->
+    <section id="faq" class="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header section-header--center animate-on-scroll">
+          <p class="section-eyebrow">FAQ</p>
+          <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Quick answers to the questions we hear most. Still curious? Message us anytime.</p>
+        </div>
+
+        <div class="faq-list stagger-children">
+
+          <details class="card faq-item" name="faq">
+            <summary>How long does installation take?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>Once your application is approved, our technicians typically complete installation within 24&ndash;48 hours. Installation is free on all plans.</p></div>
+          </details>
+
+          <details class="card faq-item" name="faq">
+            <summary>Is there a data cap or fair-use policy?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>No. All EH CONNECT plans come with truly unlimited data &mdash; no caps, no throttling, no fair-use limits.</p></div>
+          </details>
+
+          <details class="card faq-item" name="faq">
+            <summary>Is there a lock-in contract?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>Our Basic plan has no lock-in contract. Other plans may include a minimum term depending on current promos &mdash; our team will confirm the details before installation.</p></div>
+          </details>
+
+          <details class="card faq-item" name="faq">
+            <summary>How can I pay my bill?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>Pay securely through the Customer Portal via GCash, Maya, or credit card, or visit our office in Poblacion, Liloan. You can also process payments through our <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer">Facebook Page</a> &mdash; send us a message and we&rsquo;ll assist you with your payment. Official receipts are available for download in the portal.</p></div>
+          </details>
+
+          <details class="card faq-item" name="faq">
+            <summary>What should I do if my connection goes down?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>First, restart your router. If the issue persists, message us on Facebook or submit a ticket through the Customer Portal. Our team will dispatch a technician who will be on-site within 24&ndash;48 hours to restore your connection.</p></div>
+          </details>
+
+          <details class="card faq-item" name="faq">
+            <summary>Can I get a custom speed plan?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>Yes. While we don&rsquo;t offer fixed business packages, we can customize your connection speed depending on your needs &mdash; whether for a busy household or a small shop. <a href="#support">Contact us</a> for a tailored quote.</p></div>
+          </details>
+
+          <details class="card faq-item" name="faq">
+            <summary>What happens if my connection needs repair?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="faq-answer"><p>If your connection goes down or experiences issues, simply reach out to us via Facebook Messenger or the Customer Portal. Our certified technicians will be dispatched to your location and will have your service restored within 24&ndash;48 hours.</p></div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SUPPORT
+         ========================================== -->
+    <section id="support" class="support on-dark" aria-labelledby="support-title">
+      <picture>
+        <source srcset="/images/fiber-optic.webp" type="image/webp">
+        <img class="support-bg" src="/images/fiber-optic.jpg" alt="" width="1125" height="750" loading="lazy">
+      </picture>
+      <span class="support-streaks" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+
+      <div class="container">
+        <div class="support-copy animate-on-scroll-left">
+          <p class="section-eyebrow">Need Help?</p>
+          <h2 class="section-title" id="support-title">We&rsquo;re Here for You</h2>
+          <p class="section-subtitle">Our local support team is ready to assist you with installation, technical issues or any questions about your service.</p>
+
+          <div class="support-actions">
+            <a href="tel:+639331953428" class="btn btn-primary btn-lg">
+              <i class="fas fa-headset" aria-hidden="true"></i> Contact Support
+            </a>
+            <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-lg">
+              <i class="fab fa-facebook-messenger" aria-hidden="true"></i> Message Us on Facebook
+            </a>
           </div>
         </div>
 
-        <div class="glass-card testimonial-card">
-          <div class="testimonial-stars" aria-label="5 out of 5 stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial-quote">"Our shop's POS and online orders run on EH CONNECT. When we had an issue, their local techs were on-site within the hour. Impressive service."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" aria-hidden="true">JD</div>
-            <div>
-              <div class="testimonial-name">Joseph D.</div>
-              <div class="testimonial-role">Business Owner · Consolacion</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass-card testimonial-card">
-          <div class="testimonial-stars" aria-label="5 out of 5 stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial-quote">"I work from home and game at night — no lag, no dropped calls. Paying bills through the online portal is super convenient too."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" aria-hidden="true">KA</div>
-            <div>
-              <div class="testimonial-name">Kristine A.</div>
-              <div class="testimonial-role">Remote Worker · Tayud, Liloan</div>
-            </div>
-          </div>
-        </div>
+        <ul class="support-channels animate-on-scroll-right">
+          <li>
+            <a href="tel:+639331953428" class="support-channel">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-clock"></i></span>
+              <span class="support-channel-label">24&ndash;48 Hour<br>Response Time</span>
+              <i class="fas fa-arrow-right go" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:support@ehconnection.com" class="support-channel">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-users"></i></span>
+              <span class="support-channel-label">Local Cebu<br>Team</span>
+              <i class="fas fa-arrow-right go" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="support-channel">
+              <span class="icon-tile" aria-hidden="true"><i class="fas fa-comments"></i></span>
+              <span class="support-channel-label">Multiple<br>Support Channels</span>
+              <i class="fas fa-arrow-right go" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-       CTA BANNER
-       ========================================== -->
-  <section class="cta-banner" aria-label="Call to action">
-    <div class="container">
-      <div class="cta-card animate-on-scroll">
-        <h2>Ready to Get Connected?</h2>
-        <p>Join thousands of satisfied subscribers and experience the EH CONNECT difference. Lightning-fast fiber internet starts here.</p>
-        <div class="cta-actions">
-          <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Apply Now</a>
-          <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg"><i class="fas fa-user-circle"></i> Customer Portal</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       FAQ
-       ========================================== -->
-  <section id="faq" class="faq" aria-label="Frequently asked questions">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-circle-question"></i> FAQ</div>
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle">Quick answers to the questions we hear most. Still curious? Message us anytime.</p>
-      </div>
-
-      <div class="faq-list animate-on-scroll">
-        <details class="faq-item">
-          <summary>How long does installation take?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>Once your application is approved, our technicians typically complete installation within 24–48 hours. Installation is free on all plans.</p></div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Is there a data cap or fair-use policy?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>No. All EH CONNECT plans come with truly unlimited data — no caps, no throttling, no fair-use limits.</p></div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Is there a lock-in contract?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>Our Basic plan has no lock-in contract. Other plans may include a minimum term depending on current promos — our team will confirm the details before installation.</p></div>
-        </details>
-
-        <details class="faq-item">
-          <summary>How can I pay my bill?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>Pay securely through the Customer Portal via GCash, Maya, or credit card, or visit our office in Poblacion, Liloan. You can also process payments through our <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer">Facebook Page</a> — send us a message and we'll assist you with your payment. Official receipts are available for download in the portal.</p></div>
-        </details>
-
-        <details class="faq-item">
-          <summary>What should I do if my connection goes down?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>First, restart your router. If the issue persists, message us on Facebook or submit a ticket through the Customer Portal. Our team will dispatch a technician who will be on-site within 24–48 hours to restore your connection.</p></div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Can I get a custom speed plan?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>Yes. While we don't offer fixed business packages, we can customize your connection speed depending on your needs — whether for a busy household or a small shop. Contact us for a tailored quote.</p></div>
-        </details>
-
-        <details class="faq-item">
-          <summary>What happens if my connection needs repair?<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
-          <div class="faq-answer"><p>If your connection goes down or experiences issues, simply reach out to us via Facebook Messenger or the Customer Portal. Our certified technicians will be dispatched to your location and will have your service restored within 24–48 hours — guaranteed.</p></div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       CONTACT
-       ========================================== -->
-  <section id="contact" class="contact" aria-label="Contact information">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-badge"><i class="fas fa-phone-alt"></i> Contact Us</div>
-        <h2 class="section-title">We'd Love to Hear From You</h2>
-        <p class="section-subtitle">Have questions? Reach out to our team. We're always happy to help.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-info-grid animate-on-scroll-left">
-          <div class="glass-card contact-item">
-            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div>
-              <h4>Address</h4>
-              <p>Purok Sunflower, Poblacion<br>Liloan, Cebu, Philippines</p>
-            </div>
-          </div>
-
-          <div class="glass-card contact-item">
-            <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
-            <div>
-              <h4>Contact Number</h4>
-              <p><a href="tel:+639331953428">0933 195 3428</a></p>
-            </div>
-          </div>
-
-          <div class="glass-card contact-item">
-            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-            <div>
-              <h4>Email Address</h4>
-              <p><a href="mailto:support@ehconnection.com">support@ehconnection.com</a></p>
-            </div>
-          </div>
-
-          <div class="glass-card contact-item">
-            <div class="contact-item-icon"><i class="fab fa-facebook"></i></div>
-            <div>
-              <h4>Facebook Page</h4>
-              <p><a href="https://facebook.com/e.hinternetconnection" target="_blank" rel="noopener noreferrer">@e.hinternetconnection</a></p>
-            </div>
-          </div>
-
-          <div class="glass-card contact-item" style="grid-column: 1 / -1;">
-            <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
-            <div>
-              <h4>Business Hours</h4>
-              <p>Monday – Saturday: 8:00 AM – 5:00 PM<br>Closed on Sunday</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-map animate-on-scroll-right">
-          <iframe
-            src="https://www.google.com/maps?q=Purok+Sunflower+Poblacion+Liloan+Cebu+Philippines&output=embed"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="EH CONNECT Location"
-            aria-label="Google Map showing EH CONNECT office at Purok Sunflower, Poblacion, Liloan, Cebu"
-          ></iframe>
-        </div>
-      </div>
-
-      <!-- Message us on Facebook CTA -->
-      <div class="contact-messenger-cta animate-on-scroll" style="text-align: center; margin-top: var(--spacing-xl);">
-        <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
-          <i class="fab fa-facebook-messenger"></i> Message us on Facebook
-        </a>
-      </div>
-
-    </div>
-  </section>
+  </main>
 
   <!-- ==========================================
        FOOTER
@@ -711,53 +806,73 @@
       <div class="footer-grid">
         <!-- Brand -->
         <div class="footer-brand">
-          <a href="#home" class="navbar-brand" style="margin-bottom:var(--spacing-md)">
-            <span class="logo-icon"><img src="/EH/images/logo.png" alt="EH CONNECT"></span>
-            <span class="brand-text">
-              EH CONNECT
-              <span class="brand-sub">Internet Services</span>
-            </span>
+          <a href="#home" class="navbar-brand" aria-label="E.H Internet Connection home">
+            <img class="brand-logo" src="/images/logo-brand-light.png" alt="E.H Internet Connection" width="300" height="60">
+            <span class="brand-sub">Fiber Internet &middot; Liloan &middot; Consolacion</span>
           </a>
-          <p>EH CONNECT delivers fast, reliable fiber internet to homes across Liloan and Consolacion, Cebu. Experience the future of connectivity with our affordable plans and responsive repair support.</p>
+          <p>Bringing fast, reliable and affordable fiber internet to homes and businesses in Liloan, Consolacion and nearby areas. A proudly local Cebu company.</p>
         </div>
 
         <!-- Quick Links -->
-        <div>
-          <h4>Quick Links</h4>
+        <nav aria-labelledby="footer-links-title">
+          <h4 id="footer-links-title">Quick Links</h4>
           <ul class="footer-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#plans">Internet Plans</a></li>
+            <li><a href="#plans">Plans</a></li>
             <li><a href="#coverage">Coverage</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="#about">About Us</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
           </ul>
-        </div>
+        </nav>
 
-        <!-- Customer Portal -->
+        <!-- Customer Support -->
+        <nav aria-labelledby="footer-support-title">
+          <h4 id="footer-support-title">Customer Support</h4>
+          <ul class="footer-links">
+            <li><a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer">Customer Portal</a></li>
+            <li><a href="https://billing.ehconnection.com/portal/login" target="_blank" rel="noopener noreferrer">Submit a Ticket</a></li>
+            <li><a href="https://facebook.com/e.hinternetconnection" target="_blank" rel="noopener noreferrer">Facebook Page</a></li>
+            <li><a href="#coverage">Service Areas</a></li>
+            <li><a href="tel:+639331953428">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Get in Touch -->
         <div>
-          <h4>Account</h4>
-          <p style="font-size:0.9rem; color:var(--color-gray-600); margin-bottom:var(--spacing-md);">Manage your account, pay bills, and get support through our Customer Portal.</p>
-          <a href="https://billing.ehconnection.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%"><i class="fas fa-user-circle"></i> Customer Portal</a>
+          <h4>Get in Touch</h4>
+          <div class="footer-contact">
+            <p class="footer-contact-item">
+              <i class="fas fa-location-dot" aria-hidden="true"></i>
+              <span>Purok Sunflower, Poblacion<br>Liloan, Cebu, Philippines</span>
+            </p>
+            <p class="footer-contact-item">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <a href="mailto:support@ehconnection.com">support@ehconnection.com</a>
+            </p>
+            <p class="footer-contact-item">
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <a href="tel:+639331953428">0930 123 4567</a>
+            </p>
+            <p class="footer-contact-item">
+              <i class="far fa-clock" aria-hidden="true"></i>
+              <span>Mon&ndash;Sat: 8:00 AM &ndash; 5:00 PM</span>
+            </p>
+            <div class="footer-social">
+              <a href="https://facebook.com/e.hinternetconnection" target="_blank" rel="noopener noreferrer" aria-label="EH CONNECT on Facebook">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>
+              <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" aria-label="Message EH CONNECT on Messenger">
+                <i class="fab fa-facebook-messenger" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 EH CONNECT Internet Services. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="https://facebook.com/e.hinternetconnection" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" aria-label="Twitter / X">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
+        <p>&copy; 2026 EH CONNECT. All rights reserved.</p>
+        <p class="footer-tagline">Fast Fiber. Brighter Communities.</p>
       </div>
     </div>
   </footer>
@@ -765,13 +880,13 @@
   <!-- ==========================================
        FLOATING FACEBOOK MESSENGER BUTTON
        ========================================== -->
-  <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="fb-messenger-float" aria-label="Message us on Facebook">
-    <i class="fab fa-facebook-messenger"></i>
+  <a href="https://m.me/e.hinternetconnection" target="_blank" rel="noopener noreferrer" class="fb-messenger-float" aria-label="Message us on Facebook Messenger">
+    <i class="fab fa-facebook-messenger" aria-hidden="true"></i>
   </a>
 
   <!-- ==========================================
        SCRIPTS
        ========================================== -->
-  <script src="/EH/js/main.js" defer></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

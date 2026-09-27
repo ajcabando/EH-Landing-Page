@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+
+# Local env
+.env
+.env.local
+*.log
+
+# AI tooling artifacts — AGENTS.md is the canonical context file
+.agents/
+GEMINI.md
