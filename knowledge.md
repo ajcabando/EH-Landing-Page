@@ -35,13 +35,13 @@ A **static marketing landing page** for **EH CONNECT**, a fiber internet service
 
 | File | Used for |
 |------|----------|
-| `hero-ftth.{jpg,webp}` | Hero full-bleed photo band (preloaded, `fetchpriority="high"`), 2400×1200 (2:1) |
+| `hero-ftth.{jpg,webp}` | Hero background photo under the scrim (preloaded, `fetchpriority="high"`), 2400×1200 (2:1) |
 | `ftth.png` | Hero source master — not referenced by the site, kept for re-cropping |
 | `coverage-texture.{jpg,webp}` | `#coverage` dark backdrop at 30% + luminosity blend |
 | `technician.jpg` | `#about` (Get Connected) |
 | `fiber-optic.{jpg,webp}` | `#support` dark backdrop at 20% |
 | `logo-brand.{png,webp}` | Navbar brand lockup — navy + primary blue, transparent bg, 300×60 |
-| `logo-brand-light.{png,webp}` | Footer brand lockup — white + accent-cyan, transparent bg |
+| `logo-brand-light.{png,webp}` | Footer brand lockup, **and** the navbar lockup while the overlay nav is transparent (CSS-toggled on `.navbar--overlay:not(.scrolled)`) — white + accent-cyan, transparent bg |
 | `logo.png` | **favicon / manifest / OG only** — a full dark square badge, unreadable at navbar size |
 
 The brand lockup is a 300×60 horizontal PNG whose white paper was knocked out to transparency
@@ -97,7 +97,9 @@ See `AGENTS.md` for the full token table. Key points:
 - Light base (`#FFFFFF`); three dark sections only: `#coverage`, `#support`, `.footer`
 - Blue `#1668E3` clears 5.1:1 against white, so it works for both blue-on-white text and white-on-blue fills
 - Only three keyframes remain — `mapPulse`, `floatBadge`, `streak`
-- The hero is stacked, not two-column: `.hero-visual` sits outside `.container` so the 2:1 photo band spans the full viewport edge to edge (`16 / 10` ≤1024px, `object-position: 45% 50%` to hold the technician in frame)
+- The hero has two treatments switched by `@media (min-width: 1025px) and (min-aspect-ratio: 4/3)`: a dark photo-overlay hero (2:1 source cover-cropped, `object-position: 30% 50%`) on landscape desktop, and a light stacked layout with the photo as a band on anything narrower or portrait. Both are driven by custom properties on `.hero` (`--hero-fg`, `--hero-card-bg`, `--hero-scrim`, …), not by overrides
+- The aspect-ratio condition is load-bearing: the source is 2:1, so `object-fit: cover` retains only `aspect / 2` of its width. A 900×1200 tablet at 0.75 aspect would keep 37% of the frame
+- Glassmorphism is confined to `.hero-trust` and the transparent navbar. The body sections stay flat, per the redesign note above
 
 ### JavaScript (`js/main.js`)
 

@@ -15,7 +15,9 @@ This is a **static marketing landing page** for **EH CONNECT**, a fiber internet
 
 ## Design direction
 
-The site was redesigned (Sept 2026) from a dark neon-glassmorphism theme to a **light professional theme** with dark accent sections. Do not reintroduce neon glows, glassmorphism, particle canvases, or 3D card tilt — all of it was deliberately removed.
+The site was redesigned (Sept 2026) from a dark neon-glassmorphism theme to a **light professional theme** with dark accent sections. Do not reintroduce neon glows, particle canvases, or 3D card tilt — all of it was deliberately removed.
+
+**One deliberate exception to the glassmorphism ban: the hero.** It was later rebuilt as a dark photo-overlay hero with a frosted trust card, because the reference design called for it. Keep glass confined to `.hero-trust` and the navbar; the body sections stay flat and light.
 
 ### Color palette (CSS custom properties in `:root`)
 
@@ -37,14 +39,17 @@ The site was redesigned (Sept 2026) from a dark neon-glassmorphism theme to a **
 - **Poppins** 600/700/800 — headings, prices, step numbers (display)
 - **Inter** 400/500/600 — body copy
 
-Caveat is no longer loaded. It was only ever used by the hero's handwritten script label, which was removed when the hero became a full-bleed photo band. If you reintroduce a script face, re-add it to the font URL in **both** pages.
+Caveat is no longer loaded. It was only ever used by the hero's handwritten script label, which was removed when the hero became a photo-overlay hero. If you reintroduce a script face, re-add it to the font URL in **both** pages.
 
 ### Layout
 
 - Light base (`#FFFFFF`), with three dark sections: `#coverage`, `#support`, `.footer`
-- The hero is **stacked, not two-column**: `.hero-content` sits in `.container`, and `.hero-visual` is a sibling *outside* it so the photo band spans the full viewport edge to edge (`.hero` has `padding-bottom: 0` and `overflow: hidden`)
-- Band ratios: `2 / 1` desktop → `16 / 10` ≤1024px. Below 768px the ratio is unchanged; only the chip hides. The `200 Mbps` chip is offset to the text gutter with `left: max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem))` — if you change `.container`'s padding, update this too
-- `.hero-photo img` uses `object-position: 45% 50%` so the technician stays in frame wherever the ratio crops the 2:1 source
+- The hero has **two treatments**, switched by `@media (min-width: 1025px) and (min-aspect-ratio: 4/3)`. The condition is deliberately on aspect ratio as well as width: the hero photo is 2:1, so `object-fit: cover` keeps only `aspect / 2` of its width. A portrait viewport would show a fraction of the frame, so narrow/portrait screens fall back to a light stacked layout with the photo as a band under the copy
+- The two treatments are driven by one block of custom properties on `.hero` (`--hero-fg`, `--hero-card-bg`, `--hero-scrim`, …). Change a colour by editing the variable, not by adding an override — an override at equal specificity loses on source order, which is how the invisible-CTA bug happened
+- **Glass is allowed only in the hero.** `.hero-trust` uses `backdrop-filter: blur(16px)` over the photo; the stacked fallback drops to a plain bordered card via `--hero-card-blur: none`. Sections stay flat
+- `.hero-media img` uses `object-position: 30% 50%` in the overlay (`45% 50%` stacked) so the left bias protects the technician and the fiber box, sacrificing the TV edge
+- The overlay navbar needs the **light** brand lockup: `index.html` renders both `logo-brand.png` and `logo-brand-light.png` and CSS shows one or the other via `.navbar--overlay:not(.scrolled)`. Both files load (~10 KB extra). `apply.html` has no `navbar--overlay` class and hardcodes `scrolled`, so it is unaffected — keep it that way, or its navy-on-white nav will break
+- `Check Coverage` carries `.btn-outline-light` in the markup for the overlay, and `.hero` resets it to navy for the stacked treatment. If you add a third hero CTA, give it the same treatment
 - Section padding: `6rem` desktop → `4.5rem` ≤1024px → `3.5rem` ≤768px
 - Cards: white, 1px `--color-border`, `--radius-lg` (18px), soft two-layer shadow
 

@@ -518,6 +518,59 @@ h1, h2, h3, h4, h5 {
   max-width: 220px;
 }
 
+/* The overlay navbar floats on a dark hero photo, so it needs the light
+   lockup variant (white + accent cyan); the navy one disappears against
+   it. Toggled with CSS so no JS is involved — both files load, ~10 KB.
+   Gated on the same condition as the hero overlay treatment, so a narrow
+   or portrait viewport (light page) never shows the light lockup. */
+.brand-logo--light {
+  display: none;
+}
+
+@media (min-width: 1025px) and (min-aspect-ratio: 4/3) {
+  .navbar--overlay:not(.scrolled) .brand-logo--dark {
+    display: none;
+  }
+
+  .navbar--overlay:not(.scrolled) .brand-logo--light {
+    display: inline-block;
+  }
+
+  /* Light type while the overlay navbar is transparent. The min-width
+     floor also keeps the mobile dropdown panel (solid white) navy. */
+  .navbar--overlay:not(.scrolled) .navbar-links a {
+    color: #fff;
+  }
+
+  .navbar--overlay:not(.scrolled) .navbar-links a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .navbar--overlay:not(.scrolled) .navbar-links a.active {
+    color: #fff;
+  }
+
+  .navbar--overlay:not(.scrolled) .navbar-links a::after {
+    background: var(--color-accent-cyan);
+  }
+
+  .navbar--overlay:not(.scrolled) .brand-sub {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .navbar--overlay:not(.scrolled) .navbar-actions .btn-outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .navbar--overlay:not(.scrolled) .navbar-actions .btn-outline:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #fff;
+  }
+}
+
 .brand-sub {
   font-family: var(--font-body);
   font-size: 0.58rem;
@@ -689,32 +742,134 @@ h1, h2, h3, h4, h5 {
 
 /* ============================================
    HERO
+
+   Two treatments driven by one block of custom
+   properties, so the switch is a variable swap
+   rather than a pile of overrides:
+
+   - overlay  (min-width 900px AND >= 4:3 aspect)
+     Full-viewport dark hero, photo behind a
+     scrim, copy overlaid. The 2:1 source is
+     cover-cropped, and the visible width is
+     aspect/2, so a portrait viewport would
+     crop away most of the frame. Hence the
+     aspect-ratio condition, not a width one.
+   - stacked  (everything else)
+     Light page, photo as a band under the copy.
    ============================================ */
 .hero {
+  --hero-fg: var(--color-navy);
+  --hero-sub-fg: var(--color-body);
+  --hero-accent: var(--color-primary);
+  --hero-eyebrow-fg: var(--color-primary-hover);
+  --hero-eyebrow-bg: var(--color-primary-soft);
+  --hero-card-bg: #fff;
+  --hero-card-border: var(--color-border);
+  --hero-card-fg: var(--color-navy);
+  --hero-card-rule: var(--color-border);
+  --hero-card-blur: none;
+  --hero-scrim: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0));
+  --hero-media-position: 45% 50%;
+  --hero-media-position-sm: 30% 50%;
+
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding-top: calc(var(--navbar-height) + 3.5rem);
-  padding-bottom: 0;
   background: var(--color-bg);
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
+/* --- Overlay treatment --- */
+@media (min-width: 1025px) and (min-aspect-ratio: 4/3) {
+  .hero {
+    --hero-fg: #fff;
+    --hero-sub-fg: rgba(255, 255, 255, 0.82);
+    --hero-accent: var(--color-accent-cyan);
+    --hero-eyebrow-fg: rgba(255, 255, 255, 0.92);
+    --hero-eyebrow-bg: rgba(255, 255, 255, 0.14);
+    --hero-card-bg: rgba(10, 26, 51, 0.55);
+    --hero-card-border: rgba(255, 255, 255, 0.18);
+    --hero-card-fg: #fff;
+    --hero-card-rule: rgba(255, 255, 255, 0.16);
+    --hero-card-blur: blur(16px);
+    --hero-scrim:
+      linear-gradient(to bottom, rgba(10, 26, 51, 0.62) 0%, rgba(10, 26, 51, 0) 26%),
+      linear-gradient(to top, rgba(10, 26, 51, 0.88) 0%, rgba(10, 26, 51, 0) 42%),
+      linear-gradient(to right, rgba(10, 26, 51, 0.93) 0%, rgba(10, 26, 51, 0.74) 34%, rgba(10, 26, 51, 0.30) 62%, rgba(10, 26, 51, 0.10) 100%);
+    --hero-media-position: 30% 50%;
+
+    min-height: 100svh;
+    padding-bottom: clamp(2rem, 5vh, 3.5rem);
+    background: var(--color-navy);
+  }
+
+  /* Fill the viewport so .hero-content's auto margins can centre the copy
+     and push the trust card onto the bottom edge. */
+  .hero-inner {
+    flex: 1;
+  }
+
+  .hero .hero-actions .btn-outline-light,
+  .hero .hero-actions .btn-outline-light:hover {
+    color: #fff;
+  }
+
+  .hero .hero-actions .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero .hero-actions .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #fff;
+  }
+}
+
+/* --- Background media layer --- */
+.hero-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  order: 2;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-media-position);
+}
+
+.hero-scrim {
   position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 55%;
-  height: 80%;
-  background: radial-gradient(circle, rgba(22, 104, 227, 0.08) 0%, transparent 68%);
+  inset: 0;
+  background: var(--hero-scrim);
   pointer-events: none;
 }
 
-.hero .container {
+@media (min-width: 1025px) and (min-aspect-ratio: 4/3) {
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    order: 0;
+    aspect-ratio: auto;
+  }
+}
+
+/* --- Copy --- */
+.hero-inner {
   position: relative;
+  z-index: 1;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .hero-content {
   max-width: 40rem;
+  margin-block: auto;
+  color: var(--hero-fg);
 }
 
 .hero-eyebrow {
@@ -726,13 +881,14 @@ h1, h2, h3, h4, h5 {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-primary-hover);
-  background: var(--color-primary-soft);
+  color: var(--hero-eyebrow-fg);
+  background: var(--hero-eyebrow-bg);
   border-radius: var(--radius-full);
   margin-bottom: 1.5rem;
 }
 
 .hero-title {
+  color: var(--hero-fg);
   font-size: clamp(2.5rem, 5.2vw, 4rem);
   font-weight: 800;
   line-height: 1.05;
@@ -740,12 +896,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .hero-title .accent {
-  color: var(--color-primary);
+  color: var(--hero-accent);
 }
 
 .hero-subtitle {
   font-size: 1.1rem;
-  color: var(--color-body);
+  color: var(--hero-sub-fg);
   max-width: 44ch;
   margin-bottom: 2.25rem;
 }
@@ -754,16 +910,39 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  margin-bottom: 3.25rem;
+  margin-bottom: 0;
 }
 
-/* Hero trust row */
+/* The markup carries .btn-outline-light for the overlay treatment. In the
+   stacked treatment the page is light, so that variant's white text and
+   translucent border would render invisible — swap it for the navy one.
+   The overlay media query below turns it white again. */
+.hero-actions .btn-outline-light {
+  color: var(--color-navy);
+  border-color: var(--color-border-strong);
+}
+
+.hero-actions .btn-outline-light:hover {
+  color: var(--color-navy);
+  background: var(--color-bg-soft);
+  border-color: var(--color-navy);
+}
+
+/* Trust card — glass over the photo in the overlay treatment,
+   a plain bordered card in the stacked one. */
 .hero-trust {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  align-items: center;
   gap: 0.9rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-border);
+  margin-top: clamp(2.25rem, 6vh, 4rem);
+  padding: 1.15rem 1.5rem;
+  background: var(--hero-card-bg);
+  backdrop-filter: var(--hero-card-blur);
+  -webkit-backdrop-filter: var(--hero-card-blur);
+  border: 1px solid var(--hero-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .hero-trust-item {
@@ -773,13 +952,19 @@ h1, h2, h3, h4, h5 {
   min-width: 0;
 }
 
+.hero-trust-item + .hero-trust-item {
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--hero-card-rule);
+}
+
 .hero-trust-item .icon-tile {
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
   font-size: 0.95rem;
-  background: transparent;
-  border: 1.5px solid var(--color-primary-soft-2);
-  color: var(--color-primary);
+  background: var(--hero-eyebrow-bg);
+  border: 1.5px solid var(--hero-card-border);
+  color: var(--hero-accent);
   border-radius: 50%;
 }
 
@@ -787,122 +972,54 @@ h1, h2, h3, h4, h5 {
   font-size: 0.78rem;
   font-weight: 600;
   line-height: 1.32;
-  color: var(--color-navy);
+  color: var(--hero-card-fg);
 }
 
 .hero-trust-label > span {
   white-space: nowrap;
 }
 
-/* Hero visual — full-bleed photo band spanning the viewport */
-.hero-visual {
-  position: relative;
-  width: 100%;
-  margin-top: 3.5rem;
-}
-
-.hero-photo {
-  position: relative;
-  aspect-ratio: 2 / 1;
-}
-
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Slight left bias keeps the technician in frame where the ratio crops */
-  object-position: 45% 50%;
-}
-
-/* Soften the band's top edge where it meets the white page */
-.hero-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 7%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
-  pointer-events: none;
-}
-
-/* Seats the connection chip against the band's lower edge */
-.hero-photo-glow {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 30%;
-  background: linear-gradient(to top, rgba(13, 71, 171, 0.22), transparent);
-  pointer-events: none;
-}
-
-/* Floating connection chip over the band */
-.hero-chip {
-  position: absolute;
-  z-index: 3;
-  bottom: 1.5rem;
-  /* Align to the text gutter: container edge + its 2rem padding */
-  left: max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem));
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.9rem 1.25rem;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-}
-
-.hero-chip-value {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1;
-}
-
-.hero-chip-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-body);
-  line-height: 1.25;
-}
-
-@media (max-width: 1024px) {
-  .hero-content {
-    max-width: 100%;
-  }
-
-  .hero-photo {
-    aspect-ratio: 16 / 10;
-  }
-
-  .hero-chip {
-    left: 1.5rem;
-  }
-}
-
 @media (max-width: 768px) {
   .hero {
     padding-top: calc(var(--navbar-height) + 2rem);
+    padding-bottom: 0;
   }
 
-  .hero-visual {
+  .hero-media {
     margin-top: 2.5rem;
   }
 
   .hero-trust {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.1rem 0.5rem;
+    margin-top: 2.5rem;
   }
 
   .hero-trust-item {
     gap: 0.55rem;
   }
 
+  .hero-trust-item + .hero-trust-item {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .hero-actions {
+    margin-bottom: 0;
+  }
+
   .hero-actions .btn {
     flex: 1 1 100%;
   }
+}
 
-  .hero-chip {
-    display: none;
+/* The eyebrow is long enough to wrap into a two-line pill on a narrow
+   phone. Tighten the tracking so it stays on one line. */
+@media (max-width: 480px) {
+  .hero-eyebrow {
+    align-self: flex-start;
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
   }
 }
 

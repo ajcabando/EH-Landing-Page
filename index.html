@@ -44,11 +44,12 @@
   <!-- ==========================================
        NAVBAR
        ========================================== -->
-  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar--overlay" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
       <!-- Brand -->
       <a href="#home" class="navbar-brand" aria-label="E.H Internet Connection home">
-        <img class="brand-logo" src="/images/logo-brand.png" alt="E.H Internet Connection" width="300" height="60">
+        <img class="brand-logo brand-logo--dark" src="/images/logo-brand.png" alt="E.H Internet Connection" width="300" height="60">
+        <img class="brand-logo brand-logo--light" src="/images/logo-brand-light.png" alt="E.H Internet Connection" width="300" height="60">
         <span class="brand-sub">Fiber Internet &middot; Liloan &middot; Consolacion</span>
       </a>
 
@@ -87,65 +88,58 @@
          HERO
          ========================================== -->
     <section id="home" class="hero" aria-labelledby="hero-title">
-      <div class="container">
+      <!-- Background media layer. Sits behind the copy; the scrim carries the
+           text contrast, so the photo is free to stay a bright dusk scene. -->
+      <div class="hero-media">
+        <picture>
+          <source srcset="/images/hero-ftth.webp" type="image/webp">
+          <img src="/images/hero-ftth.jpg" alt="A fiber technician terminating a line at a distribution box, the fiber run glowing blue across to a home where a family streams and browses on connected devices" width="2400" height="1200" fetchpriority="high">
+        </picture>
+        <span class="hero-scrim" aria-hidden="true"></span>
+      </div>
+
+      <div class="container hero-inner">
         <div class="hero-content animate-on-scroll">
-          <p class="hero-eyebrow">Fiber Internet for a Brighter Cebu</p>
+          <p class="hero-eyebrow">Fiber Internet for Your Home and Business</p>
 
           <h1 class="hero-title" id="hero-title">
             Fast Fiber.<br>
-            <span class="accent">Powering Homes.</span>
+            <span class="accent">Brighter Lives.</span>
           </h1>
 
           <p class="hero-subtitle">
             Reliable, high-speed fiber internet for homes and businesses in Liloan,
-            Consolacion and nearby areas. Experience unlimited possibilities with EH CONNECT.
+            Consolacion and nearby areas. Experience more of what matters with EH CONNECT.
           </p>
 
           <div class="hero-actions">
             <a href="https://billing.ehconnection.com/portal/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
               Get Connected <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
             </a>
-            <a href="#coverage" class="btn btn-outline btn-lg">Check Coverage</a>
+            <a href="#coverage" class="btn btn-outline-light btn-lg">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Check Coverage
+            </a>
           </div>
-
-          <ul class="hero-trust">
-            <li class="hero-trust-item">
-              <span class="icon-tile" aria-hidden="true"><i class="fas fa-bolt"></i></span>
-              <span class="hero-trust-label"><span>Pure Fiber</span><br><span>Connection</span></span>
-            </li>
-            <li class="hero-trust-item">
-              <span class="icon-tile" aria-hidden="true"><i class="fas fa-infinity"></i></span>
-              <span class="hero-trust-label"><span>Unlimited Data</span><br><span>No Caps</span></span>
-            </li>
-            <li class="hero-trust-item">
-              <span class="icon-tile" aria-hidden="true"><i class="fas fa-headset"></i></span>
-              <span class="hero-trust-label"><span>24&ndash;48 Hr</span><br><span>Support</span></span>
-            </li>
-            <li class="hero-trust-item">
-              <span class="icon-tile" aria-hidden="true"><i class="fas fa-users"></i></span>
-              <span class="hero-trust-label"><span>Local Cebu</span><br><span>Team</span></span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Full-bleed photo band -->
-      <div class="hero-visual animate-on-scroll">
-        <div class="hero-photo">
-          <picture>
-            <source srcset="/images/hero-ftth.webp" type="image/webp">
-            <img src="/images/hero-ftth.jpg" alt="A fiber technician terminating a line at a distribution box, the fiber run glowing blue across to a home where a family streams and browses on connected devices" width="2400" height="1200" fetchpriority="high">
-          </picture>
-          <span class="hero-photo-glow" aria-hidden="true"></span>
         </div>
 
-        <div class="hero-chip" aria-hidden="true">
-          <span class="icon-tile icon-tile--sm icon-tile--circle"><i class="fas fa-gauge-high"></i></span>
-          <span>
-            <span class="hero-chip-value">200 Mbps</span>
-            <span class="hero-chip-label">Fastest plan</span>
-          </span>
-        </div>
+        <ul class="hero-trust animate-on-scroll">
+          <li class="hero-trust-item">
+            <span class="icon-tile" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+            <span class="hero-trust-label"><span>Pure Fiber</span><br><span>Connection</span></span>
+          </li>
+          <li class="hero-trust-item">
+            <span class="icon-tile" aria-hidden="true"><i class="fas fa-infinity"></i></span>
+            <span class="hero-trust-label"><span>Unlimited Data</span><br><span>No Caps</span></span>
+          </li>
+          <li class="hero-trust-item">
+            <span class="icon-tile" aria-hidden="true"><i class="fas fa-headset"></i></span>
+            <span class="hero-trust-label"><span>24&ndash;48 Hr</span><br><span>Support</span></span>
+          </li>
+          <li class="hero-trust-item">
+            <span class="icon-tile" aria-hidden="true"><i class="fas fa-users"></i></span>
+            <span class="hero-trust-label"><span>Local Cebu</span><br><span>Team</span></span>
+          </li>
+        </ul>
       </div>
     </section>
 
