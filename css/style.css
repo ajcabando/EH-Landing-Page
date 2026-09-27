@@ -38,7 +38,6 @@
   /* Typography */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-script: 'Caveat', 'Segoe Script', cursive;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -694,7 +693,7 @@ h1, h2, h3, h4, h5 {
 .hero {
   position: relative;
   padding-top: calc(var(--navbar-height) + 3.5rem);
-  padding-bottom: 5rem;
+  padding-bottom: 0;
   background: var(--color-bg);
   overflow: hidden;
 }
@@ -712,10 +711,6 @@ h1, h2, h3, h4, h5 {
 
 .hero .container {
   position: relative;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  align-items: center;
-  gap: 3rem;
 }
 
 .hero-content {
@@ -799,107 +794,52 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
 }
 
-/* Hero visual — photo bleeds off the right viewport edge on wide screens */
+/* Hero visual — full-bleed photo band spanning the viewport */
 .hero-visual {
   position: relative;
-}
-
-@media (min-width: 1025px) and (max-width: 1200px) {
-  .hero-visual {
-    margin-right: -2rem;
-  }
-}
-
-@media (min-width: 1201px) {
-  .hero-visual {
-    margin-right: calc((var(--max-width) - 100vw) / 2 - 2rem);
-  }
+  width: 100%;
+  margin-top: 3.5rem;
 }
 
 .hero-photo {
   position: relative;
-  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 1;
 }
 
 .hero-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Slight left bias keeps the technician in frame where the ratio crops */
+  object-position: 45% 50%;
 }
 
-/* Fade the photo's left edge into the white page */
+/* Soften the band's top edge where it meets the white page */
 .hero-photo::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, #fff 0%, rgba(255, 255, 255, 0.28) 16%, transparent 38%);
+  inset: 0 0 auto 0;
+  height: 7%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
   pointer-events: none;
 }
 
+/* Seats the connection chip against the band's lower edge */
 .hero-photo-glow {
   position: absolute;
   inset: auto 0 0 0;
-  height: 45%;
-  background: linear-gradient(to top, rgba(13, 71, 171, 0.32), transparent);
+  height: 30%;
+  background: linear-gradient(to top, rgba(13, 71, 171, 0.22), transparent);
   pointer-events: none;
 }
 
-/* Script label over the photo */
-.hero-script {
-  position: absolute;
-  top: 12%;
-  left: 10%;
-  z-index: 2;
-  font-family: var(--font-script);
-  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
-  line-height: 1.05;
-  color: #fff;
-  text-shadow: 0 2px 18px rgba(10, 26, 51, 0.6);
-  transform: rotate(-6deg);
-  pointer-events: none;
-}
-
-.hero-pin {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1rem;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-md);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-navy);
-  white-space: nowrap;
-}
-
-.hero-pin i {
-  color: var(--color-primary);
-}
-
-.hero-pin--one {
-  top: 46%;
-  right: 8%;
-}
-
-.hero-pin--two {
-  bottom: 16%;
-  left: 14%;
-}
-
-/* Floating connection chip over photo */
+/* Floating connection chip over the band */
 .hero-chip {
   position: absolute;
   z-index: 3;
-  bottom: -1.25rem;
-  left: -1.5rem;
+  bottom: 1.5rem;
+  /* Align to the text gutter: container edge + its 2rem padding */
+  left: max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem));
   display: flex;
   align-items: center;
   gap: 0.85rem;
@@ -926,37 +866,26 @@ h1, h2, h3, h4, h5 {
 }
 
 @media (max-width: 1024px) {
-  .hero .container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
   .hero-content {
     max-width: 100%;
   }
 
-  .hero-visual {
-    order: -1;
-  }
-
   .hero-photo {
     aspect-ratio: 16 / 10;
-    border-radius: var(--radius-xl);
-  }
-
-  .hero-photo::after {
-    background: linear-gradient(to top, #fff 0%, rgba(255, 255, 255, 0.2) 20%, transparent 45%);
   }
 
   .hero-chip {
-    left: 1rem;
+    left: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
     padding-top: calc(var(--navbar-height) + 2rem);
-    padding-bottom: 3.5rem;
+  }
+
+  .hero-visual {
+    margin-top: 2.5rem;
   }
 
   .hero-trust {
@@ -970,10 +899,6 @@ h1, h2, h3, h4, h5 {
 
   .hero-actions .btn {
     flex: 1 1 100%;
-  }
-
-  .hero-photo {
-    aspect-ratio: 4 / 3;
   }
 
   .hero-chip {

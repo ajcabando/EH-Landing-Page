@@ -36,12 +36,15 @@ The site was redesigned (Sept 2026) from a dark neon-glassmorphism theme to a **
 
 - **Poppins** 600/700/800 — headings, prices, step numbers (display)
 - **Inter** 400/500/600 — body copy
-- **Caveat** 500/600 — the handwritten script label over the hero photo only
+
+Caveat is no longer loaded. It was only ever used by the hero's handwritten script label, which was removed when the hero became a full-bleed photo band. If you reintroduce a script face, re-add it to the font URL in **both** pages.
 
 ### Layout
 
 - Light base (`#FFFFFF`), with three dark sections: `#coverage`, `#support`, `.footer`
-- Hero photo **bleeds off the right viewport edge** on screens ≥1025px (via negative `margin-right`); re-add those rules if you change the hero grid
+- The hero is **stacked, not two-column**: `.hero-content` sits in `.container`, and `.hero-visual` is a sibling *outside* it so the photo band spans the full viewport edge to edge (`.hero` has `padding-bottom: 0` and `overflow: hidden`)
+- Band ratios: `2 / 1` desktop → `16 / 10` ≤1024px. Below 768px the ratio is unchanged; only the chip hides. The `200 Mbps` chip is offset to the text gutter with `left: max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem))` — if you change `.container`'s padding, update this too
+- `.hero-photo img` uses `object-position: 45% 50%` so the technician stays in frame wherever the ratio crops the 2:1 source
 - Section padding: `6rem` desktop → `4.5rem` ≤1024px → `3.5rem` ≤768px
 - Cards: white, 1px `--color-border`, `--radius-lg` (18px), soft two-layer shadow
 
@@ -55,7 +58,8 @@ js/main.js          All client-side behavior (~300 lines)
 images/             Brand logo, favicons, PWA manifest, stock photos
                     logo-brand.{png,webp}       — navbar brand lockup (navy/blue)
                     logo-brand-light.{png,webp} — footer brand lockup (white/cyan)
-                    hero-home-dusk.{jpg,webp}  — hero (preloaded)
+                    hero-ftth.{jpg,webp}      — hero band (preloaded)
+                    ftth.png                  — hero source master, NOT served
                     coverage-texture.{jpg,webp} — dark coverage backdrop
                     technician.jpg              — Get Connected
                     fiber-optic.{jpg,webp}      — Support section backdrop

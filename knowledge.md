@@ -35,7 +35,8 @@ A **static marketing landing page** for **EH CONNECT**, a fiber internet service
 
 | File | Used for |
 |------|----------|
-| `hero-home-dusk.{jpg,webp}` | Hero right panel (preloaded, `fetchpriority="high"`) |
+| `hero-ftth.{jpg,webp}` | Hero full-bleed photo band (preloaded, `fetchpriority="high"`), 2400×1200 (2:1) |
+| `ftth.png` | Hero source master — not referenced by the site, kept for re-cropping |
 | `coverage-texture.{jpg,webp}` | `#coverage` dark backdrop at 30% + luminosity blend |
 | `technician.jpg` | `#about` (Get Connected) |
 | `fiber-optic.{jpg,webp}` | `#support` dark backdrop at 20% |
@@ -96,7 +97,7 @@ See `AGENTS.md` for the full token table. Key points:
 - Light base (`#FFFFFF`); three dark sections only: `#coverage`, `#support`, `.footer`
 - Blue `#1668E3` clears 5.1:1 against white, so it works for both blue-on-white text and white-on-blue fills
 - Only three keyframes remain — `mapPulse`, `floatBadge`, `streak`
-- The hero photo bleeds off the right viewport edge at ≥1025px via a negative `margin-right` computed from `--max-width`
+- The hero is stacked, not two-column: `.hero-visual` sits outside `.container` so the 2:1 photo band spans the full viewport edge to edge (`16 / 10` ≤1024px, `object-position: 45% 50%` to hold the technician in frame)
 
 ### JavaScript (`js/main.js`)
 
@@ -154,7 +155,7 @@ Copy says speeds are customizable per customer need ("custom speed plan", "tailo
 
 ## CDN dependencies
 
-- Google Fonts: Poppins (600–800), Inter (400–600), Caveat (500–600) — single combined request
+- Google Fonts: Poppins (600–800), Inter (400–600) — single combined request (Caveat was dropped with the hero script label)
 - Font Awesome 6.5.1 via cdnjs with an SRI integrity hash
 
 ## Accessibility
